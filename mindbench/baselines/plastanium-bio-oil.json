@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "buildings": [
+    {
+      "block": "steam-generator",
+      "x": 8,
+      "y": 6,
+      "rotation": 0
+    },
+    {
+      "block": "pneumatic-drill",
+      "x": 6,
+      "y": 6,
+      "rotation": 0
+    },
+    {
+      "block": "pneumatic-drill",
+      "x": 8,
+      "y": 8,
+      "rotation": 0
+    },
+    {
+      "block": "mechanical-pump",
+      "x": 8,
+      "y": 5,
+      "rotation": 0
+    },
+    {
+      "block": "steam-generator",
+      "x": 16,
+      "y": 6,
+      "rotation": 0
+    },
+    {
+      "block": "pneumatic-drill",
+      "x": 14,
+      "y": 6,
+      "rotation": 0
+    },
+    {
+      "block": "pneumatic-drill",
+      "x": 16,
+      "y": 8,
+      "rotation": 0
+    },
+    {
+      "block": "mechanical-pump",
+      "x": 16,
+      "y": 5,
+      "rotation": 0
+    },
+    {
+      "block": "cultivator",
+      "x": 14,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "spore-press",
+      "x": 24,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "plastanium-compressor",
+      "x": 36,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "mechanical-pump",
+      "x": 10,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "mechanical-pump",
+      "x": 11,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "mechanical-pump",
+      "x": 12,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 10,
+      "y": 15,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 11,
+      "y": 15,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 12,
+      "y": 15,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 13,
+      "y": 15,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 14,
+      "y": 15,
+      "rotation": 3
+    },
+    {
+      "block": "conduit",
+      "x": 14,
+      "y": 14,
+      "rotation": 3
+    },
+    {
+      "block": "conveyor",
+      "x": 16,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 17,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 18,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 19,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 20,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 21,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 22,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 23,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 26,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 27,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 28,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 29,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 30,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 31,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 32,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 33,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 34,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conduit",
+      "x": 35,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "pneumatic-drill",
+      "x": 32,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 34,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 35,
+      "y": 16,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 36,
+      "y": 16,
+      "rotation": 3
+    },
+    {
+      "block": "conveyor",
+      "x": 36,
+      "y": 15,
+      "rotation": 3
+    },
+    {
+      "block": "conveyor",
+      "x": 36,
+      "y": 14,
+      "rotation": 3
+    },
+    {
+      "block": "conveyor",
+      "x": 38,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 39,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 40,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 41,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 42,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 43,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 44,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 45,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 46,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 47,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 48,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 49,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 50,
+      "y": 12,
+      "rotation": 0
+    },
+    {
+      "block": "power-node",
+      "x": 10,
+      "y": 7,
+      "rotation": 0,
+      "links": [
+        [
+          8,
+          6
+        ],
+        [
+          14,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 14,
+      "y": 10,
+      "rotation": 0,
+      "links": [
+        [
+          10,
+          7
+        ],
+        [
+          14,
+          12
+        ],
+        [
+          18,
+          7
+        ],
+        [
+          20,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 18,
+      "y": 7,
+      "rotation": 0,
+      "links": [
+        [
+          14,
+          10
+        ],
+        [
+          16,
+          6
+        ],
+        [
+          20,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 20,
+      "y": 10,
+      "rotation": 0,
+      "links": [
+        [
+          14,
+          10
+        ],
+        [
+          18,
+          7
+        ],
+        [
+          26,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 26,
+      "y": 10,
+      "rotation": 0,
+      "links": [
+        [
+          20,
+          10
+        ],
+        [
+          24,
+          12
+        ],
+        [
+          32,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 32,
+      "y": 10,
+      "rotation": 0,
+      "links": [
+        [
+          26,
+          10
+        ],
+        [
+          38,
+          10
+        ]
+      ]
+    },
+    {
+      "block": "power-node",
+      "x": 38,
+      "y": 10,
+      "rotation": 0,
+      "links": [
+        [
+          32,
+          10
+        ],
+        [
+          36,
+          12
+        ]
+      ]
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 12,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 13,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 14,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 15,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 16,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 17,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 18,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 19,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 20,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 21,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 22,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 23,
+      "rotation": 1
+    },
+    {
+      "block": "conveyor",
+      "x": 51,
+      "y": 24,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 52,
+      "y": 24,
+      "rotation": 0
+    },
+    {
+      "block": "conveyor",
+      "x": 53,
+      "y": 24,
+      "rotation": 0
+    }
+  ]
+}

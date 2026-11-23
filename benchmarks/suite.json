@@ -1,0 +1,24 @@
+{
+  "id": "gamebench-local-v0.2",
+  "status": "development-release; no official leaderboard yet",
+  "unit": "one fresh agent session per task and repeat",
+  "task_ids": [
+    "celeste-100m",
+    "celeste-300m",
+    "celeste-400m",
+    "celeste-600m",
+    "celeste-700m",
+    "shapez-cut",
+    "shapez-paint",
+    "shapez-stack",
+    "2048-policy",
+    "showdown-policy",
+    "showdown-expanded",
+    "mindustry-plastanium-bio-oil",
+    "mindustry-blast-compound",
+    "mindustry-surge-alloy"
+  ],
+  "primary_comparison": "complete agent systems with native harnesses",
+  "aggregation": "per-task raw metrics and per-game summaries; no cross-game scalar ranking",
+  "historical_results": "exploratory, never silently promoted to this release"
+}

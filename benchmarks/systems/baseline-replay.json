@@ -1,0 +1,9 @@
+{
+  "id": "baseline-replay",
+  "harness": "none: infrastructure acceptance only",
+  "harness_version": "1",
+  "model": "none",
+  "command": [],
+  "credential_env": [],
+  "status": "manual frozen baseline; not an agent system performance result"
+}

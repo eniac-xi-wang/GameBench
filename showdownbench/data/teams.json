@@ -1,0 +1,718 @@
+[
+  {
+    "id": "balance",
+    "team": [
+      {
+        "name": "Dragonite",
+        "species": "Dragonite",
+        "ability": "Multiscale",
+        "item": "Heavy-Duty Boots",
+        "nature": "Adamant",
+        "moves": [
+          "Dragon Dance",
+          "Extreme Speed",
+          "Earthquake",
+          "Ice Punch"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Normal",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Rotom",
+        "species": "Rotom-Wash",
+        "ability": "Levitate",
+        "item": "Leftovers",
+        "nature": "Timid",
+        "moves": [
+          "Hydro Pump",
+          "Volt Switch",
+          "Will-O-Wisp",
+          "Pain Split"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Steel",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": "N"
+      },
+      {
+        "name": "Scizor",
+        "species": "Scizor",
+        "ability": "Technician",
+        "item": "Choice Band",
+        "nature": "Adamant",
+        "moves": [
+          "Bullet Punch",
+          "U-turn",
+          "Close Combat",
+          "Knock Off"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Steel",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Clefable",
+        "species": "Clefable",
+        "ability": "Magic Guard",
+        "item": "Leftovers",
+        "nature": "Bold",
+        "moves": [
+          "Moonblast",
+          "Moonlight",
+          "Thunder Wave",
+          "Calm Mind"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Water",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Garchomp",
+        "species": "Garchomp",
+        "ability": "Rough Skin",
+        "item": "Rocky Helmet",
+        "nature": "Jolly",
+        "moves": [
+          "Earthquake",
+          "Dragon Claw",
+          "Stealth Rock",
+          "Swords Dance"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Fire",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Greninja",
+        "species": "Greninja",
+        "ability": "Protean",
+        "item": "Life Orb",
+        "nature": "Timid",
+        "moves": [
+          "Hydro Pump",
+          "Dark Pulse",
+          "Ice Beam",
+          "Grass Knot"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Water",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      }
+    ]
+  },
+  {
+    "id": "pivot",
+    "team": [
+      {
+        "name": "Corviknight",
+        "species": "Corviknight",
+        "ability": "Pressure",
+        "item": "Leftovers",
+        "nature": "Impish",
+        "moves": [
+          "Brave Bird",
+          "Body Press",
+          "Roost",
+          "U-turn"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Dragon",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Slowking",
+        "species": "Slowking",
+        "ability": "Regenerator",
+        "item": "Heavy-Duty Boots",
+        "nature": "Bold",
+        "moves": [
+          "Surf",
+          "Psychic",
+          "Slack Off",
+          "Thunder Wave"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Fairy",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Meowscarada",
+        "species": "Meowscarada",
+        "ability": "Protean",
+        "item": "Choice Scarf",
+        "nature": "Jolly",
+        "moves": [
+          "Flower Trick",
+          "Knock Off",
+          "U-turn",
+          "Play Rough"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Grass",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Arcanine",
+        "species": "Arcanine",
+        "ability": "Intimidate",
+        "item": "Heavy-Duty Boots",
+        "nature": "Adamant",
+        "moves": [
+          "Flare Blitz",
+          "Extreme Speed",
+          "Will-O-Wisp",
+          "Morning Sun"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Normal",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Excadrill",
+        "species": "Excadrill",
+        "ability": "Mold Breaker",
+        "item": "Air Balloon",
+        "nature": "Jolly",
+        "moves": [
+          "Earthquake",
+          "Iron Head",
+          "Rapid Spin",
+          "Swords Dance"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Ground",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Sylveon",
+        "species": "Sylveon",
+        "ability": "Pixilate",
+        "item": "Leftovers",
+        "nature": "Modest",
+        "moves": [
+          "Hyper Voice",
+          "Shadow Ball",
+          "Wish",
+          "Protect"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Fire",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      }
+    ]
+  },
+  {
+    "id": "rain",
+    "team": [
+      {
+        "name": "Pelipper",
+        "species": "Pelipper",
+        "ability": "Drizzle",
+        "item": "Damp Rock",
+        "nature": "Bold",
+        "moves": [
+          "Hurricane",
+          "Surf",
+          "U-turn",
+          "Roost"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Ground",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Barraskewda",
+        "species": "Barraskewda",
+        "ability": "Swift Swim",
+        "item": "Choice Band",
+        "nature": "Adamant",
+        "moves": [
+          "Liquidation",
+          "Close Combat",
+          "Flip Turn",
+          "Psychic Fangs"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Water",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Amoonguss",
+        "species": "Amoonguss",
+        "ability": "Regenerator",
+        "item": "Rocky Helmet",
+        "nature": "Bold",
+        "moves": [
+          "Giga Drain",
+          "Sludge Bomb",
+          "Clear Smog",
+          "Synthesis"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Water",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Toxtricity",
+        "species": "Toxtricity",
+        "ability": "Punk Rock",
+        "item": "Throat Spray",
+        "nature": "Modest",
+        "moves": [
+          "Overdrive",
+          "Boomburst",
+          "Sludge Wave",
+          "Volt Switch"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Normal",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Salamence",
+        "species": "Salamence",
+        "ability": "Intimidate",
+        "item": "Heavy-Duty Boots",
+        "nature": "Jolly",
+        "moves": [
+          "Dragon Dance",
+          "Dual Wingbeat",
+          "Earthquake",
+          "Dragon Claw"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Steel",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Mamoswine",
+        "species": "Mamoswine",
+        "ability": "Thick Fat",
+        "item": "Focus Sash",
+        "nature": "Adamant",
+        "moves": [
+          "Earthquake",
+          "Icicle Spear",
+          "Ice Shard",
+          "Stealth Rock"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Ice",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      }
+    ]
+  },
+  {
+    "id": "sand",
+    "team": [
+      {
+        "name": "Tyranitar",
+        "species": "Tyranitar",
+        "ability": "Sand Stream",
+        "item": "Leftovers",
+        "nature": "Adamant",
+        "moves": [
+          "Stone Edge",
+          "Crunch",
+          "Earthquake",
+          "Stealth Rock"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Flying",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Skarmory",
+        "species": "Skarmory",
+        "ability": "Sturdy",
+        "item": "Rocky Helmet",
+        "nature": "Impish",
+        "moves": [
+          "Spikes",
+          "Roost",
+          "Body Press",
+          "Brave Bird"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Dragon",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Gastrodon",
+        "species": "Gastrodon",
+        "ability": "Storm Drain",
+        "item": "Leftovers",
+        "nature": "Bold",
+        "moves": [
+          "Recover",
+          "Earth Power",
+          "Ice Beam",
+          "Surf"
+        ],
+        "evs": {
+          "hp": 252,
+          "def": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Fire",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Gengar",
+        "species": "Gengar",
+        "ability": "Cursed Body",
+        "item": "Life Orb",
+        "nature": "Timid",
+        "moves": [
+          "Shadow Ball",
+          "Sludge Wave",
+          "Focus Blast",
+          "Thunderbolt"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Ghost",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Breloom",
+        "species": "Breloom",
+        "ability": "Technician",
+        "item": "Focus Sash",
+        "nature": "Adamant",
+        "moves": [
+          "Mach Punch",
+          "Bullet Seed",
+          "Rock Tomb",
+          "Swords Dance"
+        ],
+        "evs": {
+          "atk": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Fighting",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      },
+      {
+        "name": "Hydreigon",
+        "species": "Hydreigon",
+        "ability": "Levitate",
+        "item": "Choice Scarf",
+        "nature": "Timid",
+        "moves": [
+          "Dark Pulse",
+          "Draco Meteor",
+          "Flamethrower",
+          "U-turn"
+        ],
+        "evs": {
+          "spa": 252,
+          "spe": 252,
+          "spd": 4
+        },
+        "level": 100,
+        "teraType": "Steel",
+        "ivs": {
+          "hp": 31,
+          "atk": 31,
+          "def": 31,
+          "spa": 31,
+          "spd": 31,
+          "spe": 31
+        },
+        "gender": ""
+      }
+    ]
+  }
+]

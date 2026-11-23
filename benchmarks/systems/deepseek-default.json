@@ -1,0 +1,15 @@
+{
+  "id": "deepseek-flash-sdk-default",
+  "harness": "deepseek-harness-sdk",
+  "harness_version": "0.2.2rc2",
+  "model": "deepseek-flash",
+  "model_version_status": "provider alias; exact server revision unavailable",
+  "profile": "sdk",
+  "overrides": {},
+  "native_parallelism": true,
+  "context_management": "native defaults",
+  "output_token_limit": "native provider default; no benchmark override",
+  "credential_env": ["DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL"],
+  "command": ["{python}", "-m", "gamebench.agent_deepseek", "{workdir}", "{instruction}"],
+  "status": "official SDK adapter provided; no paid model run under this protocol yet"
+}

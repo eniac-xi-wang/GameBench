@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "width": 24,
+  "height": 20,
+  "tick_rate": 60,
+  "duration_seconds": 60,
+  "replay_every_ticks": 15,
+  "max_buildings": 160,
+  "build_budget": 180,
+  "allowed": [
+    "belt",
+    "cutter",
+    "rotater",
+    "stacker",
+    "painter",
+    "mixer",
+    "balancer",
+    "trash",
+    "underground_belt"
+  ],
+  "blocked": [],
+  "id": "paint",
+  "name": "染色生产线",
+  "sources": [
+    {
+      "type": "constant_producer",
+      "x": 1,
+      "y": 10,
+      "shape": "CuCuCuCu",
+      "rotation": 90
+    },
+    {
+      "type": "constant_producer",
+      "x": 11,
+      "y": 1,
+      "color": "red",
+      "rotation": 180
+    }
+  ],
+  "goals": [
+    {
+      "type": "goal_acceptor",
+      "x": 22,
+      "y": 10,
+      "shape": "CrCrCrCr",
+      "rotation": 90
+    }
+  ]
+}

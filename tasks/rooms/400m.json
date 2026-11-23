@@ -1,0 +1,34 @@
+{
+  "id": "celeste-classic-400m-v2",
+  "altitude_m": 400,
+  "room_index": 3,
+  "target_room": 4,
+  "mechanism": "falling floors",
+  "engine_commit": "261d96f15af430b8111abc7a5250229246654f52",
+  "arithmetic": "ccleste 16.16 fixed point, clang++ -fwrapv",
+  "seed": 8,
+  "fps": 30,
+  "max_frames": 600,
+  "bootstrap_file": "tasks/room_prefixes/400m.txt",
+  "bootstrap_frames": 317,
+  "start": "canonical legacy 100m spawn; replay immutable reference prefix; stop after first PLAYER-present frame in target room, including draw",
+  "initial_observation": {
+    "frame": 0,
+    "input": 0,
+    "room": 3,
+    "deaths": 0,
+    "freeze": 2,
+    "player": {
+      "x": 8,
+      "y": 96,
+      "vx": 5,
+      "vy": 0,
+      "dash": 0,
+      "ground": true
+    }
+  },
+  "finish": "first actual engine transition from room 3 to 4",
+  "objective": "minimize update+draw ticks from the fixed start; unsuccessful inputs are unranked",
+  "randomness": "seed, trusted prefix, object phases and initial state fixed; no candidate overrides",
+  "reference_origin": "ccleste/test-tas.txt; prefix and candidate split at first PLAYER-present frame; candidate never controls prefix"
+}

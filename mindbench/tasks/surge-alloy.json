@@ -1,0 +1,158 @@
+{
+  "id": "surge-alloy",
+  "family": "surge-alloy",
+  "suite": "complex-production",
+  "width": 60,
+  "height": 52,
+  "ticks": 18000,
+  "seed": 1729,
+  "goal": "surge-alloy",
+  "core": {
+    "x": 55,
+    "y": 24
+  },
+  "budget": 2700,
+  "allowed_blocks": [
+    "conveyor",
+    "titanium-conveyor",
+    "router",
+    "junction",
+    "sorter",
+    "inverted-sorter",
+    "overflow-gate",
+    "underflow-gate",
+    "mechanical-drill",
+    "pneumatic-drill",
+    "mechanical-pump",
+    "rotary-pump",
+    "conduit",
+    "pulse-conduit",
+    "liquid-router",
+    "liquid-junction",
+    "liquid-container",
+    "steam-generator",
+    "combustion-generator",
+    "power-node",
+    "battery",
+    "silicon-smelter",
+    "surge-smelter"
+  ],
+  "patches": [
+    {
+      "item": "coal",
+      "x": 4,
+      "y": 6,
+      "width": 16,
+      "height": 4
+    },
+    {
+      "item": "water",
+      "x": 8,
+      "y": 5,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "item": "water",
+      "x": 16,
+      "y": 5,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "item": "coal",
+      "x": 12,
+      "y": 12,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "sand",
+      "x": 22,
+      "y": 6,
+      "width": 2,
+      "height": 3
+    },
+    {
+      "item": "copper",
+      "x": 30,
+      "y": 16,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "lead",
+      "x": 41,
+      "y": 16,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "titanium",
+      "x": 30,
+      "y": 6,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "coal",
+      "x": 4,
+      "y": 30,
+      "width": 16,
+      "height": 4
+    },
+    {
+      "item": "water",
+      "x": 8,
+      "y": 29,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "item": "water",
+      "x": 16,
+      "y": 29,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "item": "coal",
+      "x": 12,
+      "y": 36,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "sand",
+      "x": 22,
+      "y": 30,
+      "width": 2,
+      "height": 3
+    },
+    {
+      "item": "copper",
+      "x": 30,
+      "y": 40,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "lead",
+      "x": 41,
+      "y": 40,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "item": "titanium",
+      "x": 30,
+      "y": 30,
+      "width": 6,
+      "height": 3
+    }
+  ],
+  "obstacles": [],
+  "protocol": "mindbench-factory-v3",
+  "scope": "Published fixed-map production optimization; no held-out generalization claim",
+  "budget_metric": "sum of quantities in native building construction requirements"
+}

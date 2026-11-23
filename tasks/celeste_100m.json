@@ -1,0 +1,15 @@
+{
+  "id": "celeste-classic-100m-v1",
+  "engine_commit": "261d96f15af430b8111abc7a5250229246654f52",
+  "arithmetic": "ccleste 16.16 fixed point, clang++ -fwrapv",
+  "seed": 8,
+  "fps": 30,
+  "max_frames": 600,
+  "start": "init; title jump for 1 tick; neutral ticks until PLAYER exists in room 0; frame 0 after that draw",
+  "finish": "first actual engine transition from room 0 (100m) to room 1 (200m)",
+  "objective": "minimize update+draw ticks to finish; unsuccessful runs are unranked",
+  "allowed": "edit button timeline only; all six input bits, including simultaneous opposite directions",
+  "randomness": "seed and initialization fixed by runner; no candidate seed, resets or state writes",
+  "replay": "fresh process from canonical start; every update followed by exactly one draw",
+  "scope": "ccleste benchmark category, not a claim of official PICO-8 TAS equivalence"
+}

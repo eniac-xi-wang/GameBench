@@ -1,0 +1,24 @@
+{
+  "protocol": "shapez-layout-v2",
+  "artifact": "three fixed-map JSON factory blueprints; generators may use any available development language",
+  "objective": "mean correct deliveries over three fixed 60-second simulations; lower total build cost breaks ties",
+  "randomness": "none; fixed input ports and shapes, empty initial inventory, 60 Hz ticks, canonical placement order",
+  "generalization": "fixed-instance optimization only; no held-out map generalization claim",
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 3600,
+    "model_requests": 60,
+    "max_output_tokens_per_request": 8192,
+    "tool_calls": 120,
+    "evaluations": 12,
+    "memory_mib": 2048,
+    "disk_mib": 1024,
+    "processes": 64
+  },
+  "model_profile": {
+    "provider": "deepseek-official",
+    "harness_profile": "sdk-minimal",
+    "reasoning_effort": "high"
+  },
+  "continuation_policy": "Same session continues until submission or a shared resource budget is exhausted; no separate continuation-count limit and no budget reset."
+}

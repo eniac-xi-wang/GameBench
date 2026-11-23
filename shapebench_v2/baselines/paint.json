@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "buildings": [
+    {
+      "type": "painter",
+      "x": 10,
+      "y": 10
+    },
+    {
+      "type": "belt",
+      "x": 2,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 3,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 4,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 5,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 6,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 7,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 8,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 9,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 2,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 3,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 4,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 5,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 6,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 7,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 8,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 11,
+      "y": 9,
+      "rotation": 180
+    },
+    {
+      "type": "belt",
+      "x": 12,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 13,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 14,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 15,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 16,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 17,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 18,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 19,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 20,
+      "y": 10,
+      "rotation": 90
+    },
+    {
+      "type": "belt",
+      "x": 21,
+      "y": 10,
+      "rotation": 90
+    }
+  ]
+}

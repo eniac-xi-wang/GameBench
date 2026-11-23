@@ -1,0 +1,2 @@
+# Optional; the build/evaluation/replay/demo commands need only Python stdlib + C++.
+deepseek-harness-sdk==0.2.2rc2

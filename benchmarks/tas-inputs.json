@@ -1,0 +1,37 @@
+[
+  {
+    "altitude": 100,
+    "file": "examples/celeste_100m_baseline.json",
+    "offset": 0,
+    "frames": 94,
+    "sha256": "a7a6da15390261344651fbaa14256ad46e70ca43e510370e4465cfebc26b8ca1"
+  },
+  {
+    "altitude": 300,
+    "file": "examples/rooms/300m_baseline.json",
+    "offset": 219,
+    "frames": 70,
+    "sha256": "cb63e79bda23efe3722bb0f5d1a1bdbe5f9e353c000c7f8df640f848f1afafda"
+  },
+  {
+    "altitude": 400,
+    "file": "examples/rooms/400m_baseline.json",
+    "offset": 317,
+    "frames": 64,
+    "sha256": "d5ac675d24161c4c9eb473dee8c8da8de6af7de65e3841dd80d61573c216cdfe"
+  },
+  {
+    "altitude": 600,
+    "file": "examples/rooms/600m_baseline.json",
+    "offset": 487,
+    "frames": 48,
+    "sha256": "23b1d555a2771fc981b33ac78551cbd4cbf78fe20cbd90bc0bf2261c9ea776e3"
+  },
+  {
+    "altitude": 700,
+    "file": "examples/rooms/700m_baseline.json",
+    "offset": 558,
+    "frames": 46,
+    "sha256": "82c44a8eb438b99f867c0937d7289156de502bf86532c19d2fbac87624c289cc"
+  }
+]

@@ -1,0 +1,657 @@
+{
+  "version": "160.7",
+  "blocks": [
+    {
+      "name": "conveyor",
+      "size": 1,
+      "cost": 1,
+      "requirements": {
+        "copper": 1
+      },
+      "has_power": false,
+      "item_capacity": 3,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "titanium-conveyor",
+      "size": 1,
+      "cost": 3,
+      "requirements": {
+        "copper": 1,
+        "lead": 1,
+        "titanium": 1
+      },
+      "has_power": false,
+      "item_capacity": 3,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "router",
+      "size": 1,
+      "cost": 3,
+      "requirements": {
+        "copper": 3
+      },
+      "has_power": false,
+      "item_capacity": 1,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "junction",
+      "size": 1,
+      "cost": 3,
+      "requirements": {
+        "copper": 3
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "sorter",
+      "size": 1,
+      "cost": 4,
+      "requirements": {
+        "copper": 2,
+        "lead": 2
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "inverted-sorter",
+      "size": 1,
+      "cost": 4,
+      "requirements": {
+        "copper": 2,
+        "lead": 2
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "overflow-gate",
+      "size": 1,
+      "cost": 6,
+      "requirements": {
+        "copper": 4,
+        "lead": 2
+      },
+      "has_power": false,
+      "item_capacity": 0,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "underflow-gate",
+      "size": 1,
+      "cost": 6,
+      "requirements": {
+        "copper": 4,
+        "lead": 2
+      },
+      "has_power": false,
+      "item_capacity": 0,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "mechanical-drill",
+      "size": 2,
+      "cost": 12,
+      "requirements": {
+        "copper": 12
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 30,
+      "consumers": [
+        {
+          "type": "ConsumeLiquid",
+          "optional": true,
+          "booster": true,
+          "liquid": "water",
+          "amount_per_tick": 0.05
+        }
+      ],
+      "drill_tier": 2,
+      "base_drill_ticks": 600
+    },
+    {
+      "name": "pneumatic-drill",
+      "size": 2,
+      "cost": 28,
+      "requirements": {
+        "copper": 18,
+        "graphite": 10
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 35,
+      "consumers": [
+        {
+          "type": "ConsumeLiquid",
+          "optional": true,
+          "booster": true,
+          "liquid": "water",
+          "amount_per_tick": 0.058333334
+        }
+      ],
+      "drill_tier": 3,
+      "base_drill_ticks": 400
+    },
+    {
+      "name": "graphite-press",
+      "size": 2,
+      "cost": 105,
+      "requirements": {
+        "copper": 75,
+        "lead": 30
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "coal": 2
+          }
+        }
+      ],
+      "craft_ticks": 90,
+      "output_items_per_craft": {
+        "graphite": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "silicon-smelter",
+      "size": 2,
+      "cost": 55,
+      "requirements": {
+        "copper": 30,
+        "lead": 25
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "coal": 1,
+            "sand": 2
+          }
+        },
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0.5,
+          "buffer_capacity": 0
+        }
+      ],
+      "craft_ticks": 40,
+      "output_items_per_craft": {
+        "silicon": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "solar-panel",
+      "size": 1,
+      "cost": 18,
+      "requirements": {
+        "lead": 10,
+        "silicon": 8
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [],
+      "base_power_production_per_tick": 0.12
+    },
+    {
+      "name": "power-node",
+      "size": 1,
+      "cost": 8,
+      "requirements": {
+        "copper": 2,
+        "lead": 6
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "battery",
+      "size": 1,
+      "cost": 25,
+      "requirements": {
+        "copper": 5,
+        "lead": 20
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0,
+          "buffer_capacity": 4000
+        }
+      ]
+    },
+    {
+      "name": "mechanical-pump",
+      "size": 1,
+      "cost": 25,
+      "requirements": {
+        "copper": 15,
+        "metaglass": 10
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 20,
+      "consumers": [],
+      "pump_per_tick_per_tile": 0.11666667
+    },
+    {
+      "name": "rotary-pump",
+      "size": 2,
+      "cost": 175,
+      "requirements": {
+        "copper": 70,
+        "metaglass": 50,
+        "titanium": 35,
+        "silicon": 20
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 80,
+      "consumers": [
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0.3,
+          "buffer_capacity": 0
+        }
+      ],
+      "pump_per_tick_per_tile": 0.2
+    },
+    {
+      "name": "conduit",
+      "size": 1,
+      "cost": 1,
+      "requirements": {
+        "metaglass": 1
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 20,
+      "consumers": []
+    },
+    {
+      "name": "pulse-conduit",
+      "size": 1,
+      "cost": 3,
+      "requirements": {
+        "metaglass": 1,
+        "titanium": 2
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 40,
+      "consumers": []
+    },
+    {
+      "name": "liquid-router",
+      "size": 1,
+      "cost": 6,
+      "requirements": {
+        "metaglass": 2,
+        "graphite": 4
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 120,
+      "consumers": []
+    },
+    {
+      "name": "liquid-junction",
+      "size": 1,
+      "cost": 12,
+      "requirements": {
+        "metaglass": 8,
+        "graphite": 4
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": []
+    },
+    {
+      "name": "liquid-container",
+      "size": 2,
+      "cost": 25,
+      "requirements": {
+        "metaglass": 15,
+        "titanium": 10
+      },
+      "has_power": false,
+      "item_capacity": 10,
+      "liquid_capacity": 700,
+      "consumers": []
+    },
+    {
+      "name": "steam-generator",
+      "size": 2,
+      "cost": 130,
+      "requirements": {
+        "copper": 35,
+        "lead": 40,
+        "graphite": 25,
+        "silicon": 30
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 60,
+      "consumers": [
+        {
+          "type": "ConsumeLiquid",
+          "optional": false,
+          "booster": false,
+          "liquid": "water",
+          "amount_per_tick": 0.1
+        },
+        {
+          "type": "ConsumeItemFlammable",
+          "optional": false,
+          "booster": false,
+          "fuel_efficiencies": {
+            "coal": 1,
+            "spore-pod": 1.15,
+            "blast-compound": 0.4,
+            "pyratite": 1.4
+          }
+        },
+        {
+          "type": "ConsumeItemExplode",
+          "optional": false,
+          "booster": false
+        }
+      ],
+      "base_power_production_per_tick": 5.5,
+      "base_fuel_duration_ticks": 90
+    },
+    {
+      "name": "combustion-generator",
+      "size": 1,
+      "cost": 40,
+      "requirements": {
+        "copper": 25,
+        "lead": 15
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumeItemFlammable",
+          "optional": false,
+          "booster": false,
+          "fuel_efficiencies": {
+            "coal": 1,
+            "spore-pod": 1.15,
+            "blast-compound": 0.4,
+            "pyratite": 1.4
+          }
+        },
+        {
+          "type": "ConsumeItemExplode",
+          "optional": false,
+          "booster": false
+        }
+      ],
+      "base_power_production_per_tick": 1,
+      "base_fuel_duration_ticks": 120
+    },
+    {
+      "name": "cultivator",
+      "size": 2,
+      "cost": 60,
+      "requirements": {
+        "copper": 25,
+        "lead": 25,
+        "silicon": 10
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 80,
+      "consumers": [
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 1.3333334,
+          "buffer_capacity": 0
+        },
+        {
+          "type": "ConsumeLiquid",
+          "optional": false,
+          "booster": false,
+          "liquid": "water",
+          "amount_per_tick": 0.3
+        }
+      ],
+      "craft_ticks": 100,
+      "output_items_per_craft": {
+        "spore-pod": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "spore-press",
+      "size": 2,
+      "cost": 65,
+      "requirements": {
+        "lead": 35,
+        "silicon": 30
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 60,
+      "consumers": [
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "spore-pod": 1
+          }
+        },
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0.7,
+          "buffer_capacity": 0
+        }
+      ],
+      "craft_ticks": 20,
+      "output_items_per_craft": {},
+      "output_liquids_per_tick": {
+        "oil": 0.3
+      }
+    },
+    {
+      "name": "plastanium-compressor",
+      "size": 2,
+      "cost": 335,
+      "requirements": {
+        "lead": 115,
+        "graphite": 60,
+        "titanium": 80,
+        "silicon": 80
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 60,
+      "consumers": [
+        {
+          "type": "ConsumeLiquid",
+          "optional": false,
+          "booster": false,
+          "liquid": "oil",
+          "amount_per_tick": 0.25
+        },
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 3,
+          "buffer_capacity": 0
+        },
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "titanium": 2
+          }
+        }
+      ],
+      "craft_ticks": 60,
+      "output_items_per_craft": {
+        "plastanium": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "pyratite-mixer",
+      "size": 2,
+      "cost": 75,
+      "requirements": {
+        "copper": 50,
+        "lead": 25
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0.2,
+          "buffer_capacity": 0
+        },
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "coal": 1,
+            "lead": 2,
+            "sand": 2
+          }
+        }
+      ],
+      "craft_ticks": 80,
+      "output_items_per_craft": {
+        "pyratite": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "blast-mixer",
+      "size": 2,
+      "cost": 50,
+      "requirements": {
+        "lead": 30,
+        "titanium": 20
+      },
+      "has_power": true,
+      "item_capacity": 10,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "pyratite": 1,
+            "spore-pod": 1
+          }
+        },
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 0.4,
+          "buffer_capacity": 0
+        }
+      ],
+      "craft_ticks": 80,
+      "output_items_per_craft": {
+        "blast-compound": 1
+      },
+      "output_liquids_per_tick": {}
+    },
+    {
+      "name": "surge-smelter",
+      "size": 3,
+      "cost": 230,
+      "requirements": {
+        "lead": 80,
+        "thorium": 70,
+        "silicon": 80
+      },
+      "has_power": true,
+      "item_capacity": 20,
+      "liquid_capacity": 10,
+      "consumers": [
+        {
+          "type": "ConsumePower",
+          "optional": false,
+          "booster": false,
+          "power_per_tick": 4,
+          "buffer_capacity": 0
+        },
+        {
+          "type": "ConsumeItems",
+          "optional": false,
+          "booster": false,
+          "items_per_craft": {
+            "copper": 3,
+            "lead": 4,
+            "titanium": 2,
+            "silicon": 3
+          }
+        }
+      ],
+      "craft_ticks": 75,
+      "output_items_per_craft": {
+        "surge-alloy": 1
+      },
+      "output_liquids_per_tick": {}
+    }
+  ]
+}

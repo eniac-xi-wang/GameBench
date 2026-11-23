@@ -1,0 +1,6 @@
+{
+  "smoke": {"wall_seconds": 60, "cpu_cores": 4, "memory_mib": 8192, "disk_mib": 16384, "repeats": 1, "purpose": "infrastructure acceptance only"},
+  "30m": {"wall_seconds": 1800, "cpu_cores": 4, "memory_mib": 8192, "disk_mib": 16384, "repeats": 3, "purpose": "short system comparison"},
+  "2h": {"wall_seconds": 7200, "cpu_cores": 4, "memory_mib": 8192, "disk_mib": 16384, "repeats": 3, "purpose": "long-horizon system comparison"},
+  "8h": {"wall_seconds": 28800, "cpu_cores": 4, "memory_mib": 8192, "disk_mib": 16384, "repeats": 3, "purpose": "extended research curve"}
+}

@@ -1,0 +1,864 @@
+[
+  {
+    "type": "belt",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 1,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [],
+    "outputs": [],
+    "processor": null
+  },
+  {
+    "type": "belt",
+    "variant": "default",
+    "rotationVariant": 1,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 1,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [],
+    "outputs": [],
+    "processor": null
+  },
+  {
+    "type": "belt",
+    "variant": "default",
+    "rotationVariant": 2,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 1,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [],
+    "outputs": [],
+    "processor": null
+  },
+  {
+    "type": "cutter",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 8,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "cutter"
+  },
+  {
+    "type": "cutter",
+    "variant": "quad",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 8,
+    "size": {
+      "x": 4,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 2,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 3,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "cutterQuad"
+  },
+  {
+    "type": "rotater",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "rotater"
+  },
+  {
+    "type": "rotater",
+    "variant": "ccw",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "rotaterCCW"
+  },
+  {
+    "type": "rotater",
+    "variant": "rotate180",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "rotater180"
+  },
+  {
+    "type": "stacker",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 12,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "shape"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "stacker"
+  },
+  {
+    "type": "painter",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 10,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "top",
+        "filter": "color"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "right"
+      }
+    ],
+    "processor": "painter"
+  },
+  {
+    "type": "painter",
+    "variant": "mirrored",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 10,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "right"
+      }
+    ],
+    "processor": "painter"
+  },
+  {
+    "type": "painter",
+    "variant": "double",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 10,
+    "size": {
+      "x": 2,
+      "y": 2
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 1
+        },
+        "direction": "left",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "top",
+        "filter": "color"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "right"
+      }
+    ],
+    "processor": "painterDouble"
+  },
+  {
+    "type": "painter",
+    "variant": "quad",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 10,
+    "size": {
+      "x": 4,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left",
+        "filter": "shape"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      },
+      {
+        "pos": {
+          "x": 2,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      },
+      {
+        "pos": {
+          "x": 3,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "painterQuad"
+  },
+  {
+    "type": "mixer",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 8,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "bottom",
+        "filter": "color"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "mixer"
+  },
+  {
+    "type": "balancer",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 2,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "bottom"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 1,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "balancer"
+  },
+  {
+    "type": "balancer",
+    "variant": "merger",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "right"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "balancer"
+  },
+  {
+    "type": "balancer",
+    "variant": "merger-inverse",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": "balancer"
+  },
+  {
+    "type": "balancer",
+    "variant": "splitter",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "right"
+      }
+    ],
+    "processor": "balancer"
+  },
+  {
+    "type": "balancer",
+    "variant": "splitter-inverse",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      }
+    ],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left"
+      }
+    ],
+    "processor": "balancer"
+  },
+  {
+    "type": "trash",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 1,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "right"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      },
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "left"
+      }
+    ],
+    "outputs": [],
+    "processor": "trash"
+  },
+  {
+    "type": "underground_belt",
+    "variant": "default",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      }
+    ],
+    "outputs": [],
+    "processor": null
+  },
+  {
+    "type": "underground_belt",
+    "variant": "default",
+    "rotationVariant": 1,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": null
+  },
+  {
+    "type": "underground_belt",
+    "variant": "tier2",
+    "rotationVariant": 0,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "bottom"
+      }
+    ],
+    "outputs": [],
+    "processor": null
+  },
+  {
+    "type": "underground_belt",
+    "variant": "tier2",
+    "rotationVariant": 1,
+    "x": 0,
+    "y": 0,
+    "rotation": 0,
+    "cost": 4,
+    "size": {
+      "x": 1,
+      "y": 1
+    },
+    "inputs": [],
+    "outputs": [
+      {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "direction": "top"
+      }
+    ],
+    "processor": null
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "celeste": {
+    "path": "celeste-classic",
+    "url": "https://github.com/lemon32767/ccleste.git",
+    "commit": "261d96f15af430b8111abc7a5250229246654f52"
+  },
+  "2048": {
+    "path": "2048",
+    "url": "https://github.com/gabrielecirulli/2048.git",
+    "commit": "478b6ec346e3787f589e4af751378d06ded4cbbc"
+  },
+  "showdown": {
+    "path": "pokemon-showdown",
+    "url": "https://github.com/smogon/pokemon-showdown.git",
+    "commit": "965a535ef892d13cd68cf75c076db26f9f32842a"
+  },
+  "mindustry": {
+    "path": "mindustry",
+    "url": "https://github.com/Anuken/Mindustry.git",
+    "commit": "17012d61d9e4c3cbd9820d87e81c24495486ac53"
+  },
+  "shapez": {
+    "path": "shapez",
+    "url": "https://github.com/tobspr-games/shapez.io.git",
+    "commit": "8a79de5255fb6756f3a1d26579b1e9bc36e0c811"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "protocol": "showdown-neutral-v3",
+  "initial_policy": "original heuristic",
+  "baseline_sha256": {
+    "common.cjs": "209e33edcdf196afa6d6d5fbd284623efe179426935249d5627fba299f7a163e",
+    "player.cjs": "e3d5a7dc81d027db497d0b782446753c9f867efa8d4b492a6762e4f36413a1f0"
+  },
+  "budgets": {
+    "wall_seconds": 1800,
+    "cpu_seconds": 7200,
+    "evaluations": 10,
+    "validations": 4,
+    "tool_calls": 180,
+    "model_requests": 80,
+    "max_output_tokens_per_request": 8192,
+    "memory_mib": 2048,
+    "disk_mib": 1024,
+    "processes": 64,
+    "continuation_turns": 4
+  },
+  "training": {
+    "teams": 256,
+    "pairs_per_call": 16,
+    "games_per_call": 192,
+    "resample_each_call": true
+  },
+  "validation": {
+    "teams": 64,
+    "pairs": 32,
+    "games": 384,
+    "feedback": "aggregate only"
+  },
+  "test": {
+    "teams": 192,
+    "pairs": 96,
+    "games": 1152,
+    "created_after_submission_freeze": true
+  },
+  "minimum_iterations": 0,
+  "minimum_modifications": 0,
+  "initial_evaluation_counts_toward_budgets": true,
+  "research_method": "agent choice",
+  "selection": "agent-selected validated trial; otherwise highest validation score, earlier trial on ties",
+  "model_profile": {
+    "provider": "deepseek-official",
+    "harness_profile": "sdk-minimal",
+    "reasoning_effort": "high"
+  }
+}

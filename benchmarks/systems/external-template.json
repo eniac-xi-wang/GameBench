@@ -1,0 +1,15 @@
+{
+  "id": "replace-with-system-id",
+  "harness": "replace-with-native-agent-name",
+  "harness_version": "replace-with-exact-version-or-commit",
+  "model": "replace-with-model-identifier",
+  "model_version_status": "record resolved model revision or alias limitation",
+  "profile": "native defaults",
+  "overrides": {},
+  "native_parallelism": true,
+  "context_management": "native defaults",
+  "output_token_limit": "native defaults",
+  "credential_env": [],
+  "command": [],
+  "status": "template; cannot launch until a real native command is supplied"
+}

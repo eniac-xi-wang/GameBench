@@ -1,0 +1,39 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>shapez 工厂回放</title>
+<style>body{font:16px/1.65 system-ui;background:#f2f5f8;color:#253341;max-width:1150px;margin:24px auto;padding:0 20px}h1{margin-bottom:5px}.bar{display:flex;gap:12px;align-items:center;margin:14px 0}button{padding:7px 15px;border:1px solid #bbc8d4;background:white;border-radius:5px}input{flex:1}canvas{max-width:100%;background:white;border:1px solid #cad5df;border-radius:5px}#detail{min-height:28px}.legend{color:#586977}#meta{font-variant-numeric:tabular-nums}</style>
+<h1 id="title"></h1><div id="meta"></div><div class="bar"><button id="first">起点</button><button id="prev">上一帧</button><button id="play">播放</button><button id="next">下一帧</button><input id="slider" type="range" min="0" value="0"><button id="last">终点</button></div>
+<canvas id="board"></canvas><div id="detail">点击机器查看位置、类型与状态。</div><p class="legend">绿色：固定供料口；紫色：固定交付口；浅灰：传送带；蓝色：加工机器。箭头表示朝向，移动小图形是实际物料。回放每 0.25 秒采样，裁判以 60 Hz 运行。</p>
+<script id="data" type="application/json">__PAYLOAD__</script><script>
+const {task,record}=JSON.parse(document.querySelector('#data').textContent),frames=record.frames;
+const canvas=document.querySelector('#board'),ctx=canvas.getContext('2d'),S=36;
+canvas.width=task.width*S;canvas.height=task.height*S;const slider=document.querySelector('#slider');slider.max=frames.length-1;
+document.querySelector('#title').textContent=task.name+' · 工厂回放';
+const names={belt:'带',cutter:'切',rotater:'转',stacker:'叠',painter:'染',mixer:'混',balancer:'分',trash:'弃',underground_belt:'隧',constant_producer:'供',goal_acceptor:'收'};
+const colors={u:'#a1abb5',r:'#e66161',g:'#58a36a',b:'#568edf',y:'#ddbd44',p:'#a979cd',c:'#62c4cb',w:'#eee'};
+function shape(item,x,y,r){
+ if(!item)return;ctx.save();ctx.translate(x,y);
+ if(!item.includes('u')&&!item.includes('-')&&item.length>2&&!item.includes(':')&&item[0]===item[0].toLowerCase()){
+  ctx.fillStyle={red:'#e66161',green:'#58a36a',blue:'#568edf',yellow:'#ddbd44',purple:'#a979cd',cyan:'#62c4cb',white:'#eee'}[item]||'#aaa';ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();
+ }else{
+  const layers=item.split(':');layers.forEach((layer,k)=>{const z=r*Math.pow(.75,k);for(let q=0;q<4;q++){
+   const code=layer.slice(q*2,q*2+2);if(code==='--')continue;ctx.save();ctx.rotate(q*Math.PI/2);ctx.fillStyle=colors[code[1]]||'#aaa';ctx.strokeStyle='#465868';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(0,0);
+   if(code[0]==='C'){ctx.arc(0,0,z,-Math.PI/2,0);}else if(code[0]==='S'){ctx.lineTo(0,-z);ctx.lineTo(z*.45,-z*.45);ctx.lineTo(z,0);}else if(code[0]==='W'){ctx.lineTo(0,-z);ctx.lineTo(z,-z*.4);ctx.lineTo(z*.4,0);}else{ctx.lineTo(0,-z);ctx.lineTo(z,-z);ctx.lineTo(z,0);}ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();}});
+ }ctx.restore();
+}
+let index=0,timer=null;
+function render(i){
+ index=Math.max(0,Math.min(frames.length-1,i));slider.value=index;const f=frames[index];ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.strokeStyle='#ecf0f3';ctx.lineWidth=1;for(let x=0;x<=task.width;x++){ctx.beginPath();ctx.moveTo(x*S,0);ctx.lineTo(x*S,canvas.height);ctx.stroke();}for(let y=0;y<=task.height;y++){ctx.beginPath();ctx.moveTo(0,y*S);ctx.lineTo(canvas.width,y*S);ctx.stroke();}
+ for(const [x,y]of task.blocked){ctx.fillStyle='#36404c';ctx.fillRect(x*S,y*S,S,S);}
+ for(const b of record.layout){const r=b.bounds;ctx.fillStyle=b.type==='constant_producer'?'#b9e5c6':b.type==='goal_acceptor'?'#dcc4f1':b.type==='belt'?'#e0e6eb':'#c5ddf1';ctx.fillRect(r.x*S+2,r.y*S+2,r.w*S-4,r.h*S-4);ctx.strokeStyle='#98abbc';ctx.strokeRect(r.x*S+2,r.y*S+2,r.w*S-4,r.h*S-4);
+  ctx.save();ctx.translate((b.x+.5)*S,(b.y+.5)*S);ctx.rotate((b.rotation||0)*Math.PI/180);ctx.strokeStyle='#5f7385';ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(0,10);if(b.type==='belt'&&b.rotationVariant){const dx=b.rotationVariant===1?-10:10;ctx.lineTo(0,0);ctx.lineTo(dx,0);ctx.lineTo(dx-Math.sign(dx)*4,-4);ctx.moveTo(dx,0);ctx.lineTo(dx-Math.sign(dx)*4,4);}else{ctx.lineTo(0,-10);ctx.lineTo(-4,-5);ctx.moveTo(0,-10);ctx.lineTo(4,-5);}ctx.stroke();ctx.restore();
+  if(b.type!=='belt'){ctx.fillStyle='#253341';ctx.font='12px system-ui';ctx.fillText(names[b.type]||b.type,r.x*S+4,r.y*S+13);}
+  if(b.fixed)shape(b.shape||b.color,(b.x+.5)*S,(b.y+.5)*S,9);
+ }
+ for(const item of f.items)shape(item.item,item.x*S,item.y*S,8);
+ document.querySelector('#meta').textContent=`${(f.tick/task.tick_rate).toFixed(2)} / ${task.duration_seconds} 秒 · 已交付 ${f.delivered} 件 · 最终 ${record.score} 件 · 成本 ${record.build_cost}/${task.build_budget}`;
+}
+document.querySelector('#first').onclick=()=>render(0);document.querySelector('#last').onclick=()=>render(frames.length-1);document.querySelector('#prev').onclick=()=>render(index-1);document.querySelector('#next').onclick=()=>render(index+1);slider.oninput=()=>render(+slider.value);
+document.querySelector('#play').onclick=()=>{if(timer){clearInterval(timer);timer=null;}else{if(index===frames.length-1)render(0);timer=setInterval(()=>{render(index+1);if(index===frames.length-1){clearInterval(timer);timer=null;document.querySelector('#play').textContent='播放';}},100);}document.querySelector('#play').textContent=timer?'暂停':'播放';};
+canvas.onclick=ev=>{const box=canvas.getBoundingClientRect(),x=(ev.clientX-box.left)*canvas.width/box.width/S,y=(ev.clientY-box.top)*canvas.height/box.height/S;const b=record.layout.find(b=>x>=b.bounds.x&&x<b.bounds.x+b.bounds.w&&y>=b.bounds.y&&y<b.bounds.y+b.bounds.h);if(b){const m=frames[index].machines.find(m=>m.uid===b.uid);document.querySelector('#detail').textContent=`${names[b.type]} ${b.type} (${b.x}, ${b.y}) · ${b.variant||'default'} · 朝向 ${b.rotation||0}°`+(m?` · 等待输入 ${m.waiting} / 加工批次 ${m.processing} / 待输出 ${m.queued}`:'');}};
+render(0);
+</script></html>

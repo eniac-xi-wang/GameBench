@@ -1,0 +1,44 @@
+{
+  "protocol": "2048-neutral-v1",
+  "initial_policy": "greedy immediate merge, empty-cell tie break",
+  "baseline_sha256": {
+    "player.cjs": "9f9d3b5d4f98126899d38bfa093884877403dbeb3cbd1ed39a267494acaf430a",
+    "rules.cjs": "f32b3987f602f70a397fde0b56f6871d6449ca7a615cd5ac933160cd9ee36630"
+  },
+  "runtime": {
+    "max_steps": 2000,
+    "cpu_seconds": 4,
+    "action_ms": 100,
+    "startup_ms": 2000,
+    "cumulative_ms": 10000,
+    "memory_mib": 512,
+    "heap_mib": 256,
+    "scratch_mib": 16
+  },
+  "training_games": 16,
+  "validation_games": 32,
+  "test_games": 128,
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 3600,
+    "model_requests": 60,
+    "max_output_tokens_per_request": 8192,
+    "tool_calls": 120,
+    "evaluations": 8,
+    "validations": 3,
+    "memory_mib": 2048,
+    "disk_mib": 1024,
+    "processes": 64,
+    "continuation_turns": 4
+  },
+  "score": "mean raw game score; policy failure scores zero; move cap retains raw score",
+  "selection": "agent-selected validated trial; otherwise highest validation score, earlier trial on ties",
+  "minimum_iterations": 0,
+  "minimum_modifications": 0,
+  "randomness": "private 256-bit HMAC-SHA256 stream per game, never provided to running policy; train resampled, validation fixed, test generated after freeze",
+  "model_profile": {
+    "provider": "deepseek-official",
+    "harness_profile": "sdk-minimal",
+    "reasoning_effort": "high"
+  }
+}

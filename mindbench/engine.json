@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/Anuken/Mindustry",
+  "tag": "v160.7",
+  "commit": "17012d61d9e4c3cbd9820d87e81c24495486ac53",
+  "license": "GPL-3.0",
+  "server_url": "https://github.com/Anuken/Mindustry/releases/download/v160.7/server-release.jar",
+  "server_sha256": "f7b899a4038b95b14a824d5f8993984f79d73baa3254c385b6538327f9c0befd",
+  "engine_mode": "official prebuilt headless server; native mechanics with canonical initial adjacency order",
+  "evaluation_protocol": "mindbench-factory-v3",
+  "initial_neighbor_order": "ascending (tileY, tileX) after all placement and configuration, before tick 1; no topology changes during simulation",
+  "jdk_url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.13%2B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.13_9.tar.gz",
+  "jdk_archive_sha256": "bf036b35b071bfb2f54f2c0af8ee8d88afa95ee6eb3dce02c0f94cfc2524d04a",
+  "factory_hazards": "native reactorExplosions=false and fire=false; fixed production topology"
+}

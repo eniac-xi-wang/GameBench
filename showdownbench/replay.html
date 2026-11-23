@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>Showdown 回合回放</title><style>__STYLE__</style>
+<h1>Showdown · 回合回放</h1><p id="summary"></p><p><a href="../index.html">返回比赛列表</a> · <a id="animated">官方动画播放器（需要联网加载素材）</a></p>
+<div class="arena"><div class="card"><h2>p1</h2><h3 id="p1name">等待出场</h3><progress id="p1hp" max="1" value="1"></progress><p id="p1status"></p></div><div class="card"><h2>p2</h2><h3 id="p2name">等待出场</h3><progress id="p2hp" max="1" value="1"></progress><p id="p2status"></p></div></div>
+<p><button id="prev">上一回合</button><button id="play">播放</button><button id="next">下一回合</button><strong id="turn"></strong></p><input id="slider" type="range" min="0" value="0"><pre id="events"></pre>
+<details><summary>完整公开对战日志</summary><pre id="raw"></pre></details>
+<script>
+const data=__DATA__;
+const frames=[];let current={turn:0,events:[],p1:{name:'等待出场',hp:1,status:''},p2:{name:'等待出场',hp:1,status:''}};
+const copy=x=>JSON.parse(JSON.stringify(x));
+for(const line of data.log){const p=line.split('|'),kind=p[1];
+ if(kind==='turn'){frames.push(copy(current));current.events=[];current.turn=Number(p[2]);}
+ const side=p[2]?.slice(0,2),s=current[side];
+ if(['switch','drag','replace'].includes(kind)&&s){s.name=p[3].split(',')[0];s.status='';}
+ if(['switch','drag','replace','-damage','-heal'].includes(kind)&&s){const text=p[['switch','drag','replace'].includes(kind)?4:3]||'';const [a,b]=text.split(' ')[0].split('/').map(Number);s.hp=b?a/b:a===0?0:s.hp;s.status=text.split(' ').slice(1).join(' ');}
+ if(kind==='faint'&&s){s.hp=0;s.status='倒下';}
+ if(kind==='-status'&&s)s.status=p[3];
+ if(kind==='-curestatus'&&s)s.status='';
+ if(kind==='move')current.events.push(p[2]+' 使用 '+p[3]);
+ else if(['switch','drag'].includes(kind))current.events.push(p[2]+' 出场：'+p[3]);
+ else if(['-damage','-heal','-status','-boost','-unboost','faint','win','tie','-weather','-terastallize','-immune','-supereffective','-resisted','-miss'].includes(kind))current.events.push(p.slice(1).join(' · '));
+}
+frames.push(copy(current));let i=0,timer=null;
+const el=id=>document.getElementById(id);
+el('summary').textContent=`${data.id} · 候选 ${data.candidate_side} vs ${data.opponent} · 得分 ${data.score} · ${data.termination}`;
+el('animated').href=data.id+'-animated.html';el('raw').textContent=data.log.join('\n');el('slider').max=frames.length-1;
+function show(){const f=frames[i];for(const side of ['p1','p2']){el(side+'name').textContent=f[side].name;el(side+'hp').value=f[side].hp;el(side+'status').textContent=Math.round(f[side].hp*100)+'% '+f[side].status;}el('turn').textContent='回合 '+f.turn;el('events').textContent=f.events.join('\n')||'队伍预览';el('slider').value=i;}
+function stop(){clearInterval(timer);timer=null;el('play').textContent='播放';}
+el('next').onclick=()=>{i=Math.min(frames.length-1,i+1);show();};el('prev').onclick=()=>{i=Math.max(0,i-1);show();};
+el('slider').oninput=e=>{i=Number(e.target.value);show();};
+el('play').onclick=()=>{if(timer){stop();return;}if(i===frames.length-1)i=0;el('play').textContent='暂停';timer=setInterval(()=>{if(i===frames.length-1){stop();return;}i++;show();},1000);};show();
+</script></html>
