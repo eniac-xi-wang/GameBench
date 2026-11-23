@@ -1,45 +1,78 @@
-# GameBench
+<h1 align="center">GameBench</h1>
 
-GameBench measures what a complete coding Agent can improve over several iterations. Each session starts with a working baseline, game source, an editable submission and a development evaluator. At the end of research the host freezes the submission, runs the original engine independently, verifies the replay and reports the task's raw score. [Historical results across all five games](results/RESULTS.md)
+<p align="center"><strong>How much can a coding agent improve a working game solution?</strong></p>
 
-## Run a benchmark
+<p align="center">
+  <a href="#how-a-run-works">Protocol</a> ·
+  <a href="#tasks">Tasks</a> ·
+  <a href="#experimental-results">Results</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#run-an-agent">Run an agent</a>
+</p>
 
-From the repository root, with **Python 3.12+, Git and a C++20 compiler**:
+In Celeste Classic, the starting script clears the first room in 94 frames. A coding agent can read the movement code, write a search program, replay a candidate frame by frame, and revise its script. When the session ends, GameBench runs the final script through the engine and counts the frames to the exit. Across **14 tasks in five games**, the same loop measures what a **model and its native harness** can improve together.
+
+<p align="center">
+  <a href="docs/replays/celeste-100m.html"><img src="docs/replays/celeste-100m.gif" width="800" alt="Celeste Classic 100m baseline climbing to the exit. The frame counter and highlighted buttons follow the recorded inputs."></a>
+</p>
+
+*Celeste Classic, 100m. The supplied baseline reaches the next room in 94 frames (3.13 s at 30 Hz). To watch offline, unzip the download and open the HTML in a browser. Use Space to play or pause and the arrow keys to inspect the input and engine state one frame at a time.* [Replay page](docs/replays/celeste-100m.html) · [Download the player from GitHub (ZIP)](docs/replays/celeste-100m.zip?raw=true)
+
+## How a run works
+
+1. **Start from the same solution.** Each system gets the task, a working baseline, the game source, a local simulator, and its own workspace. The prompt specifies the objective and submission format. The agent chooses what to inspect, what tools to write, and which changes to try.
+2. **Test and revise.** During the research budget the agent can request scored development trials with replays. For the policy games it can vary public training cases by round or evaluate on a fixed public validation set.
+3. **Freeze and grade.** At exit or deadline the host freezes the submission on disk. Once every system in the comparison has finished, the host draws final cases for the stochastic games. It independently runs the baseline and each submission on the same cases within each repeat, checks the replays, and reports scores in the game's own units.
+
+## Tasks
+
+| Game | What the agent edits | What the engine measures |
+| --- | --- | --- |
+| Celeste Classic | A JSON button timeline for one of five rooms (100m, 300m, 400m, 600m, 700m) | **Fewer frames** to reach the next room from a fixed entry and seed. A failed attempt scores 601. |
+| shapez | A factory layout for cutting, painting, or stacking | **More correct shapes** delivered on the given map in 3,600 ticks. |
+| 2048 | A JavaScript move policy | **Higher mean score** on fresh, paired tile streams, subject to action, CPU, and move limits. |
+| Pokémon Showdown | A JavaScript battle policy for the original or expanded task | **Higher battle score rate** (win = 1, tie = ½). In the expanded task one policy faces five opponents across six battle strata, with paired teams and sides. |
+| Mindustry | A production blueprint for plastanium, blast compound, or surge alloy | **More target items** in the core after 18,000 ticks on a fixed map. |
+
+The Celeste rooms and factory maps are fixed, so gains measure how much the agent improved that instance. In 2048 and Showdown, final scores also measure how well the policy handles unseen tile streams or lineups and battle seeds. [Task registry](benchmarks/suite.json) · [Scoring contracts](gamebench/registry.py) · [Game playback and asset setup](docs/game-playback.md)
+
+## Experimental results
+
+In one historical Pokémon Showdown comparison, every frozen policy played the same **1,920 battles**. Changing the harness moved the observed score in opposite directions for Qwen and DeepSeek. Each model–harness pair had **one optimization session**. The battle count gives precision about these particular policies, while variation between agent sessions remains unmeasured.
+
+| Model | Native harness | Battle score rate | Change from starting policy |
+| --- | --- | ---: | ---: |
+| Starting heuristic | — | 53.91% | — |
+| Qwen3.8-Max | Qwen Code | 53.91% | +0.00 pp |
+| Qwen3.8-Max | Claude Code | 65.89% | +11.98 pp |
+| DeepSeek Flash | Official SDK | 77.14% | +23.23 pp |
+| DeepSeek Flash | Claude Code | 71.35% | +17.45 pp |
+| GPT-6.1 Sol | Codex | 89.27% | +35.36 pp |
+
+Some tasks showed little movement. In a shapez run using the native DeepSeek harness, cutting improved from **23 to 85** correct deliveries and painting from **14 to 38**, while stacking stayed at **11**. The archive gives the baseline, protocol, and units for each experiment across all five games. [Historical tables](results/RESULTS.md) · [Machine-readable data and provenance](results/historical.json)
+
+## Quick start
+
+With **Python 3.12+, Git, and a C++20 compiler** installed, run this from the repository root.
 
 ```sh
 ./bench
 ```
 
-The default runs Celeste Classic 100m using the supplied baseline. On the first run it fetches the pinned game, derives the starting script and compiles the headless engine. It prints the path to a new HTML report with a playable replay. Expected score is **94 frames**. No account, API key, Docker or model call is needed.
+On first use this fetches the pinned Celeste source, derives the baseline, and builds the headless engine. The default run needs no API key. The expected output is **94 → 94 frames** because the host independently grades two copies of the starting script. Open the printed `index.html` path for the report and replay.
 
 ```sh
 ./bench --list
-./bench --all --out runs/all-games
 ./bench --tasks shapez-stack mindustry-surge-alloy --out runs/factories
+./bench --all --out runs/all-games
 ./bench --tasks showdown-expanded --submission /path/to/policy-directory --out runs/my-policy
 ```
 
-Use a new output directory for each run. Omit `--out` for a fresh timestamped directory. The default `smoke` budget uses smaller random test sets. Select a research budget explicitly to run the full random test sizes. The baseline mode grades a second copy of the original submission and checks that it matches the independent baseline.
+Use a fresh directory for each `--out`, or omit it for a timestamped directory. The default `smoke` profile uses small stochastic test sets. The full suite was tested on Apple Silicon macOS with Command Line Tools. 2048 and Showdown use macOS Seatbelt to isolate submitted policies.
 
-**Supported host.** The full suite is tested on Apple Silicon macOS with Command Line Tools. The two policy games (2048 and Showdown) use macOS Seatbelt for policy isolation. Celeste, shapez and Mindustry use data submissions. Mindustry automatically installs a pinned JDK on macOS arm64. On other Unix hosts it accepts `MINDBENCH_JAVA_HOME` pointing at a JDK 17+ with `java` and `javac`; these hosts have not undergone the full acceptance run. Games, Node, Java and npm dependencies are installed under the checkout when selected. First use needs internet access or the offline caches described below. Allow several GB for all game trees and workspaces.
+## Run an agent
 
-For original game visuals, export a standalone 2048 or shapez web replay, import a factory into Mindustry, or open the official Showdown animation. [Game playback and local asset setup](docs/game-playback.md)
-
-## Tasks and scores
-
-| Game | Task IDs | Submission and primary score |
-| --- | --- | --- |
-| Celeste Classic | `celeste-100m`, `celeste-300m`, `celeste-400m`, `celeste-600m`, `celeste-700m` | JSON button timeline. Minimize frames to the next room from a fixed entry and seed; failure scores 601. |
-| shapez | `shapez-cut`, `shapez-paint`, `shapez-stack` | JSON layout. Maximize correct deliveries over 3,600 ticks on the given map. |
-| 2048 | `2048-policy` | JavaScript policy. Maximize mean score on fresh, paired tile streams subject to action, CPU and move limits. |
-| Pokémon Showdown | `showdown-policy`, `showdown-expanded` | JavaScript policy. Maximize mean win credit. The legacy task has three opponents. The expanded task uses six strata and five opponents with team ownership and battle side swapped. |
-| Mindustry | `mindustry-plastanium-bio-oil`, `mindustry-blast-compound`, `mindustry-surge-alloy` | JSON blueprint. Maximize the target items in the native core after 18,000 ticks on a fixed complex-production map. |
-
-There are 14 registered tasks. A task is one optimization session per system and repeat. In expanded Showdown the same submitted program plays all six strata. The 12 basic Mindustry maps appear in the historical results; the release runs the three complex production chains. Each game keeps its own units. [Registry](benchmarks/suite.json) · [Task contracts](gamebench/registry.py)
-
-## Run an Agent
-
-Install the optional DeepSeek SDK into a virtual environment, export `DEEPSEEK_API_KEY` or set it in a local `.env`, then launch. The next command that uses `--system deepseek-default` makes paid provider calls.
+For the official DeepSeek harness, set `DEEPSEEK_API_KEY` in your environment or a local `.env`. The final command below makes paid model calls. The `30m` profile starts **three independent sessions of up to 30 minutes each** for this task.
 
 ```sh
 python3 -m venv .venv
@@ -48,27 +81,48 @@ python -m pip install -r requirements-agent.txt
 ./bench --tasks celeste-100m --system deepseek-default --budget 30m
 ```
 
-The official SDK adapter uses the system manifest's model and the native harness defaults. Other harnesses can use a JSON manifest with a native command, its actual version, a model identifier, and the names of credentials it needs. The command receives the writable workspace as its current directory. Its argument list can include `{python}`, `{workdir}` and `{instruction}`. Run the harness noninteractively and pass it the neutral instructions in that file. To compare two systems, register both in **the same invocation**:
+To compare other systems, copy the [system manifest template](benchmarks/systems/external-template.json) for each harness. Set its native launch command, version, model, and required credential names. The command runs in the agent workspace and can use `{python}`, `{workdir}`, and `{instruction}`. Pass the supplied neutral instructions to the harness and register the systems in one invocation so they share final cases.
 
 ```sh
 ./bench --tasks showdown-expanded --budget 30m --system system-a.json --system system-b.json
 ```
 
-Each system gets a separate home directory, the same starter files, the same native simulation API, and a development client inside its workspace. It may inspect source, write analysis programs, run tools, change the submission and ask for another development evaluation with `python3 bench.py trial-name [round|validation]`. The requested credential names are forwarded only to the native agent launcher. Logs and local run directories are ignored by Git. [System manifest template](benchmarks/systems/external-template.json) · [DeepSeek manifest](benchmarks/systems/deepseek-default.json)
+<details>
+<summary><strong>Research budgets, test sizes, and host isolation</strong></summary>
 
-## How to interpret a run
+Each system gets a fresh home directory and the same starting files and simulation APIs. Inside the workspace, an agent can call `python3 bench.py trial-name [round|validation]` for a development evaluation. Only credential names requested in its manifest are forwarded to the launcher. The bundled DeepSeek adapter keeps the native harness defaults. [DeepSeek manifest](benchmarks/systems/deepseek-default.json)
 
-- **Budget.** Smoke gives each research session 60 seconds and runs once. The 30m, 2h and 8h profiles run three fresh sessions per system per task, each with the named wall-clock allowance. Thus `--budget 30m` can use 90 minutes of research per system per task. Preparation and final judging run outside that allowance. System-reported costs and tokens may be unavailable. This release implements elapsed-time budgets. [Budget profiles](benchmarks/budgets.json)
-- **Selection and randomness.** The host freezes the last on-disk submission at exit or deadline. All submissions in the comparison freeze before stochastic final cases are generated. Within a repeat the baseline and all submissions receive identical cases. 2048 uses 2 final games in smoke or 128 in research. Legacy Showdown uses 12 or 1,152 games. Expanded Showdown uses 120 or 1,920 games, with legal team combinations excluded across published development and fresh final splits. Fixed maps and room entrances measure fixed-instance optimization.
-- **Evidence.** Open `index.html` for scores and replays. `comparison.json` contains per-task scores across repeats. `report.json` contains baseline and submission results, paired differences and paths to independent engine records. `cohort.json`, `sealed.json` and `private/tests.json` preserve registration, hashes and the actual final draw. Recheck a saved evaluation in the same checkout with `python3 -m gamebench verify runs/NAME/grading/systems/SYSTEM/TASK/0`. A failed harness launch, invalid submission or failed baseline check returns a nonzero exit status.
-- **Scope.** This is a **local, unranked** backend for trusted researchers. A native agent can read its host, and host-wide CPU, RAM, disk, network and detached processes are not fully isolated. Use a dedicated machine or VM for untrusted agents. Historical scores were collected under multiple protocols. Seed variation within a game and variation across independent Agent research runs are distinct sources of uncertainty. [Historical tables and limitations](results/RESULTS.md)
+The smoke profile allows 60 seconds for one session. The 30m, 2h, and 8h profiles each run three fresh sessions per system and task. Preparation and judging are outside the elapsed-time allowance. Token and cost records depend on the harness. [Budget profiles](benchmarks/budgets.json)
 
-## Reproducibility and publication
+| Final cases per repeat | Smoke | Research |
+| --- | ---: | ---: |
+| 2048 | 2 | 128 |
+| Showdown, original | 12 | 1,152 |
+| Showdown, expanded | 120 | 1,920 |
 
-The default checkout contains the evaluator, manifests, baseline definitions, build recipes, historical aggregate data and their provenance hashes. Node archives and the Mindustry binaries are verified by SHA-256; npm builds use lockfiles. The Celeste baselines and prefixes are derived from the pinned upstream recording as part of setup. [Pinned game sources](benchmarks/upstream.json) · [Third-party notices](THIRD_PARTY.md) · [License](LICENSE)
+Expanded Showdown holds out legal team combinations from the published development splits. The backend is intended for local use by trusted researchers. A native harness can read the host, and the runner does not fully isolate host-wide CPU, memory, disk, network, or detached processes. Use a dedicated machine or VM for untrusted agents.
 
-The release acceptance run passed all 14 baseline tasks in a clean macOS arm64 clone using local dependency caches. Both sides of each comparison were independently evaluated and replay-checked. Twelve protocol tests passed, including a no-model native process that edited the Celeste baseline twice, used both development replays and froze a 92-frame submission. [Acceptance record](results/release-acceptance.json)
+</details>
 
-For offline setup, `GAMEBENCH_SOURCE_CACHE` can point to a directory of local Git repositories named as in the upstream lock. `GAMEBENCH_DOWNLOAD_CACHE` can contain the fixed archives, including `server-release.jar` and `mindustry-jdk21.tar.gz` for the automatic JDK. npm supports its own populated `npm_config_cache` with `npm_config_offline=true`. Final runs write into their own directories.
+<details>
+<summary><strong>Installation, offline caches, and reproducibility</strong></summary>
 
-To check the public historical table from the committed data, run `python3 tools/history.py --check`. With the original private archive, `python3 tools/history.py --archive /path/to/archive --check` also verifies every selected source hash and regenerates the data in memory. Public readers can reproduce the tables without access to the private archive. After setting up Celeste, 2048 and Showdown, run the protocol tests with `python3 -m unittest discover -s tests`.
+Game sources, Node, Java, and npm dependencies are installed under the checkout as needed. Allow several GB for all game trees and workspaces. Mindustry installs a pinned JDK on macOS arm64. Other Unix hosts can supply a JDK 17+ with `java` and `javac` via `MINDBENCH_JAVA_HOME`. Full-suite verification covers macOS arm64.
+
+For an offline run, point `GAMEBENCH_SOURCE_CACHE` at local Git checkouts named as in the upstream lock, and `GAMEBENCH_DOWNLOAD_CACHE` at the pinned archives (including `server-release.jar` and `mindustry-jdk21.tar.gz` for the automatic JDK). A populated npm cache can be selected with `npm_config_cache` and `npm_config_offline=true`. Node and Mindustry archives are checked by SHA-256. npm builds use lockfiles. [Pinned game sources](benchmarks/upstream.json)
+
+In each run directory, open `index.html` for scores and replays, `comparison.json` for scores across repeats, and `report.json` for paired differences and paths to engine records. The cohort, frozen hashes, and final cases are recorded in `cohort.json`, `sealed.json`, and `private/tests.json`. Recheck a saved evaluation from the same checkout with the following command.
+
+```sh
+python3 -m gamebench verify runs/NAME/grading/systems/SYSTEM/TASK/0
+```
+
+Release acceptance covered all 14 baseline tasks in a clean macOS arm64 clone and 12 protocol tests. One scripted fixture submitted two Celeste revisions, scoring 93 and then 92 frames. These checks ran without model calls. After setting up Celeste, 2048, and Showdown, run `python3 -m unittest discover -s tests` for the protocol tests. [Acceptance record](results/release-acceptance.json)
+
+Run `python3 tools/history.py --check` to reproduce the historical tables from the committed data. With the original archive, `python3 tools/history.py --archive /path/to/archive --check` also verifies the selected source hashes.
+
+</details>
+
+## Credits and license
+
+The teaser shows **Celeste Classic** by Maddy Thorson and Noel Berry, recorded with the ccleste port. GameBench code and documentation are MIT-licensed. The upstream games and their artwork retain their respective rights. [License](LICENSE) · [Game and dependency credits](THIRD_PARTY.md)
