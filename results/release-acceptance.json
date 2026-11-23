@@ -1,0 +1,127 @@
+{
+  "protocol": "gamebench-local-v0.2",
+  "evaluator_commit": "1883d06fec0c30781e527b13c5df07576e5f03a3",
+  "host": {
+    "os": "Darwin",
+    "architecture": "arm64",
+    "python": "3.12.7"
+  },
+  "budget": "smoke",
+  "source_install": "fresh git clone; pinned upstream Git objects, binary archives and npm tarballs from local caches; no model API requests",
+  "verified_task_instances": 14,
+  "independent_baseline_and_candidate_evaluations": 28,
+  "model_calls": 0,
+  "protocol_tests_passed": 12,
+  "native_fixture": {
+    "task": "celeste-100m",
+    "baseline": 94,
+    "development_trials": [
+      93,
+      92
+    ],
+    "frozen_score": 92,
+    "model_calls": 0
+  },
+  "public_report_digest": "df81ae49b08d53f81d513ec1fefee8c15ae06ab132ab5d7d8962de4888ac987a",
+  "private_case_commitment": "9291625779b9c94c28b830057aba7e8f25458922b1efbe32a12bf3e92e04f1bf",
+  "rows": [
+    {
+      "task": "celeste-100m",
+      "score": 94,
+      "baseline": 94,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "celeste-300m",
+      "score": 70,
+      "baseline": 70,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "celeste-400m",
+      "score": 64,
+      "baseline": 64,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "celeste-600m",
+      "score": 48,
+      "baseline": 48,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "celeste-700m",
+      "score": 46,
+      "baseline": 46,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "shapez-cut",
+      "score": 23,
+      "baseline": 23,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "shapez-paint",
+      "score": 14,
+      "baseline": 14,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "shapez-stack",
+      "score": 11,
+      "baseline": 11,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "2048-policy",
+      "score": 1254.0,
+      "baseline": 1254.0,
+      "verification": true,
+      "final_cases": 2
+    },
+    {
+      "task": "showdown-policy",
+      "score": 0.8333333333333334,
+      "baseline": 0.8333333333333334,
+      "verification": true,
+      "final_cases": 12
+    },
+    {
+      "task": "showdown-expanded",
+      "score": 0.6416666666666667,
+      "baseline": 0.6416666666666667,
+      "verification": true,
+      "final_cases": 120
+    },
+    {
+      "task": "mindustry-plastanium-bio-oil",
+      "score": 61,
+      "baseline": 61,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "mindustry-blast-compound",
+      "score": 51,
+      "baseline": 51,
+      "verification": true,
+      "final_cases": 1
+    },
+    {
+      "task": "mindustry-surge-alloy",
+      "score": 18,
+      "baseline": 18,
+      "verification": true,
+      "final_cases": 1
+    }
+  ]
+}
