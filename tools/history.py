@@ -46,6 +46,26 @@ def extract(archive):
         rows.append([['固定开发集','轮换训练阵容','中性提示'][i],v['selected']['games'],v['initial']['score'],v['selected']['score'],v.get('heuristic',v['initial'])['score']])
     v=load(early[3])['overall_descriptive_only']
     rows.append(['旧提交迁移到扩充分布',v['games_per_program'],v['baseline'],v['optimized'],v['baseline']])
+    files=[f'experiments/showdown-{n}/summary.json' for n in ('native-expanded-v1','sol-native-v1','qwen-native-v1','qwen-claude-v1')]
+    rows=section('Showdown · 扩充分布的历次抽样', ['实验批次','程序','场数','得分率'], files,
+        '各批次使用当时的独立抽样或已冻结对照。相同程序可出现多次，这些行不计为新的 Agent 研究重复。')
+    for i,f in enumerate(files):
+        v=load(f)
+        if i==0:
+            scores={'baseline':v['overall']['baseline'],'deepseek':v['overall']['optimized']}
+            games=v['overall']['games_per_program']
+        elif i==1:
+            scores={'baseline':v['sol_vs_baseline']['baseline'],'sol':v['sol_vs_baseline']['optimized'],
+                    'deepseek':v['deepseek_vs_baseline']['optimized']}
+            games=v['sol_vs_baseline']['games_per_program']
+        else:
+            scores={k:x['score'] for k,x in v['overall'].items()}
+            games=v['overall']['baseline']['games']
+        for k,score in scores.items():rows.append([f.split('/')[1],SYSTEMS[k],games,score])
+    files=['runs/showdown-baselines-v1/summary.json','runs/showdown-baselines-v2/summary.json']
+    rows=section('Showdown · 简单策略对照', ['批次','策略','场数','得分率'],files,'旧对手池和队伍配置的校准数据。')
+    for f in files:
+        for v in load(f):rows.append([f.split('/')[1],v['policy'],v['games'],v['score']])
     cel = ['runs/celeste-100m-demo/trial-0001/result.json','runs/celeste-100m-demo/summary.json',
            'experiments/celeste-100m/deepseek-research-008/private/summary.json','experiments/celeste-suite-v2/results.json',
            'experiments/celeste-suite-dev-v3/results.json']
@@ -61,6 +81,9 @@ def extract(archive):
     rows=section('2048 · 独立测试', ['策略','局数','平均得分','失败局数'], [f], '每局最多 2,000 步，相同随机流。')
     for key,name in [('initial','贪心 baseline'),('selected','DeepSeek 冻结程序')]:
         rows.append([name,v[key]['games'],v[key]['score'],v[key]['failures']])
+    f='runs/2048-baselines-v1/comparison.json'
+    rows=section('2048 · 简单策略对照',['策略','局数','平均得分','失败局数'],[f],'同一次基线校准的随机、固定优先级和贪心策略。')
+    for k,v in load(f).items():rows.append([k,v['games'],v['score'],v['failures']])
     f='research/2048-upstream-comparison/stable-rerun/comparison.json'
     rows=section('2048 · 同批预算复测', ['策略','局数','平均得分','失败局数'], [f],
         '人工参考使用 C++ 封装；原 Agent 接口只公开支持 JavaScript。超限局记零。阈值参考 126/128 局触及步数上限。')
@@ -74,12 +97,23 @@ def extract(archive):
         for key in (['initial','final'] if i==0 else ['final']):
             scores={t['task_id']:t['score'] for t in v[key]['tasks']}
             rows.append([('原始 baseline' if key=='initial' else f.split('/')[1]),*[scores[k] for k in ('cut_rotate','paint','stack')]])
+    files=['research/shapez-unsubmitted-v1/result.json','research/shapez-optimality-check-v1/evaluation/result.json',
+           'research/shapez-unsubmitted-v2/result.json','research/shapez-stack-audit-v1/counterfactual/result.json']
+    rows=section('shapez · 未提交方案与人工对照',['产物','任务','复评交付数'],files,'这些复评说明已发现的可行解；正式提交仍按上表计分。')
+    for f,label,task in zip(files,['早期未提交切割','宿主缩短切割路径','后续未提交切割','未提交堆叠布局'],
+                            ['cut_rotate','cut_rotate','cut_rotate','stack']):
+        d=load(f)
+        score=next(t['score'] for t in d['tasks'] if t['task_id']==task) if 'tasks' in d else d['score']
+        rows.append([label,task,score])
     f='research/mindustry-replay-fix-v2/reevaluation/summary.json'
     rows=section('Mindustry · 基础生产 v2', ['产品','地图数','原始 baseline','DeepSeek 冻结蓝图'], [f],
         '回放修复后用原提交重评，每种蓝图每图独立重评五次，按四图平均。')
     v=load(f)
     for k,item in v['families'].items():
         rows.append([k,sum(t['family']==k for t in v['tasks']),item['baseline_mean'],item['final_mean']])
+    rows=section('Mindustry · 基础生产逐图复评',['地图','产品','原始 baseline','DeepSeek 冻结蓝图'],[f],'对应上一表的 12 张地图。')
+    for item in v['tasks']:
+        rows.append([item['task_id'],item['family'],item['baseline']['score'],item['final']['score']])
     f='runs/mindustry-qwen-claude-v2/execution-audit.json';v=load(f)
     rows=section('Mindustry · 中断运行', ['系统','地图数','提交与起点逐字节相同','独立最终评测数'], [f],
         '用户报告额度用尽，日志没有记录明确的额度错误。这一轮单列。')
