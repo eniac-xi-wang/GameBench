@@ -3,7 +3,7 @@
 Hashes detect accidental changes. They are not an access-control mechanism; this
 local backend is deliberately excluded from official rankings.
 """
-import platform, shutil, subprocess, sys, time
+import os, platform, shutil, subprocess, sys, time
 from pathlib import Path
 from .common import ROOT, read, save, digest, file_hashes, immutable, load_immutable, safe_id
 from .registry import task, fingerprint, budget
@@ -13,10 +13,10 @@ def integration_hashes():
     return file_hashes(ROOT/'gamebench') | {'suite':digest(read(ROOT/'benchmarks/suite.json')),
                                           'budgets':digest(read(ROOT/'benchmarks/budgets.json'))}
 
-def environment():
+def environment(task_ids=None):
     node=ROOT/'.tools/node/bin/node'
     return {'backend':'local-development','os':platform.platform(),'architecture':platform.machine(),
-            'python':sys.version,'node':subprocess.check_output([str(node),'--version'],text=True).strip() if node.exists() else None,
+            'python':sys.version,'node':subprocess.check_output([str(node),'--version'],text=True).strip() if node.exists() and (task_ids is None or any(task(t)['game'] in ('showdown','2048','shapez') for t in task_ids)) else None,
             'resource_limits_enforced':False,'agent_read_isolation':False,
             'network':'native host access; no benchmark filtering','ranking_eligible':False}
 
@@ -32,7 +32,7 @@ def create(root, task_ids, systems, profile='smoke'):
             if k not in s:raise ValueError('system manifest missing '+k)
     b=budget(profile);root.mkdir(parents=True)
     manifest={'version':1,'release':'gamebench-local-v0.2','tasks':{i:fingerprint(i) for i in task_ids},
-              'systems':{s['id']:s for s in specs},'budget':b,'environment':environment(),
+              'systems':{s['id']:s for s in specs},'budget':b,'environment':environment(task_ids),
               'integration':integration_hashes(),'selection':'last on-disk submission at run termination',
               'replicates':b['repeats'],'created_unix':time.time()}
     public={}
@@ -65,7 +65,7 @@ def development_data(task_id,repeat,profile):
 def manifest(root):
     m=load_immutable(Path(root)/'cohort.json')
     if m['integration']!=integration_hashes():raise ValueError('integration changed; create a new cohort')
-    if m['environment']!=environment():raise ValueError('runtime environment changed; create a new cohort')
+    if m['environment']!=environment(m['tasks']):raise ValueError('runtime environment changed; create a new cohort')
     for i,fp in m['tasks'].items():
         if fp!=fingerprint(i):raise ValueError('task, baseline or judge changed: '+i)
     if digest(load_immutable(Path(root)/'development.json'))!=m['development_sha256']:raise ValueError('development data changed')
@@ -90,6 +90,9 @@ def freeze_run(root,system,task_id,repeat,manual=True):
         status='invalid_submission';error=str(e)
         if (p/'artifact').exists():shutil.rmtree(p/'artifact')
     execution=read(p/'execution.json') if (p/'execution.json').exists() else {'termination':'manual_snapshot','wall_seconds':None}
+    if execution['termination'] in ('agent_process_error','launch_error'):
+        status='system_error'
+        error=execution['termination']
     record={'status':status,'error':error,'artifact_hashes':hashes,'frozen_unix':time.time(),
             'execution':execution,'prepared_sha256':digest(load_immutable(p/'prepared.json'))}
     immutable(p/'frozen.json',record);return record
@@ -137,11 +140,15 @@ def judge_subprocess(task_id,source,out,cases=None,isolated=True):
     if not isolated:cmd+=['--no-policy-isolation']
     env={'PATH':str(ROOT/'.tools/node/bin')+':/usr/bin:/bin:/usr/sbin:/sbin',
          'PYTHONPATH':str(ROOT),'PYTHONDONTWRITEBYTECODE':'1','LANG':'en_US.UTF-8'}
+    env.update({key:os.environ[key] for key in ('TMPDIR','SDKROOT','DEVELOPER_DIR') if key in os.environ})
     if task(task_id)['game']=='mindustry':
         from mindbench.core import JAVA_HOME, RUNTIME
         env.update(MINDBENCH_JAVA_HOME=str(JAVA_HOME),MINDBENCH_RUNTIME=str(RUNTIME))
     result=subprocess.run(cmd,cwd=ROOT,env=env,capture_output=True,text=True,timeout=7200)
-    if result.returncode:raise RuntimeError('independent judge failed: '+result.stderr[-3000:])
+    if result.returncode:
+        if out.exists():
+            out.rename(out.with_name(out.name+f'.failed-{time.time_ns()}'))
+        raise RuntimeError('independent judge failed: '+result.stderr[-3000:])
     return read(out/'result.json')
 
 def grade(root,isolated=True):

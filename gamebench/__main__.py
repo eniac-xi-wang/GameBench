@@ -17,7 +17,6 @@ def main():
         if op=='grade':p.add_argument('--no-policy-isolation',action='store_true')
         if op=='compare':p.add_argument('--official',action='store_true')
     p=sub.add_parser('verify');p.add_argument('out')
-    p=sub.add_parser('history');p.add_argument('--out',default=str(ROOT/'runs/history'))
     p=sub.add_parser('_judge');p.add_argument('task');p.add_argument('source');p.add_argument('out');p.add_argument('--cases');p.add_argument('--no-policy-isolation',action='store_true')
     a=parser.parse_args()
     if a.op=='list':result=tasks()
@@ -37,9 +36,6 @@ def main():
     elif a.op=='grade':result=cohort.grade(a.root,not a.no_policy_isolation)
     elif a.op=='compare':result=cohort.compare(a.root,a.official)
     elif a.op=='verify':result=adapters.verify(a.out)
-    elif a.op=='history':
-        from .report import history
-        result=history(Path(a.out).resolve())
     else:
         result=adapters.evaluate(a.task,a.source,a.out,read(a.cases) if a.cases else None,not a.no_policy_isolation)
         adapters.verify(a.out)

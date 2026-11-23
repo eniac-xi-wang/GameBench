@@ -3,8 +3,6 @@ import argparse
 from datetime import datetime, timezone
 import importlib.util
 from pathlib import Path
-import subprocess
-import sys
 
 from .common import ROOT, read, save
 from . import cohort, workspace

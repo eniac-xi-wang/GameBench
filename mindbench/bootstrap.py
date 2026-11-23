@@ -1,16 +1,11 @@
 """Install pinned official binaries locally; never change system Java."""
-import hashlib
 import json
 import platform
 from pathlib import Path
-import shutil
 import subprocess
 import tarfile
 import tempfile
-import urllib.request
 from . import core as c
-
-
 from gamebench.setup import fetch as download
 
 
