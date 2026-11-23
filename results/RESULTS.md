@@ -59,6 +59,46 @@
 
 原汇总：`experiments/showdown-pilot-v1/private/summary.json`、`experiments/showdown-generalization-v2/private/final/comparison.json`、`experiments/showdown-neutral-v3/private/final/comparison.json`、`research/showdown-effect-v1/comparison.json`。
 
+## Showdown · 扩充分布的历次抽样
+
+各批次使用当时的独立抽样或已冻结对照。相同程序可出现多次，这些行不计为新的 Agent 研究重复。
+
+| 实验批次 | 程序 | 场数 | 得分率 |
+| --- | --- | --- | --- |
+| showdown-native-expanded-v1 | 原始启发式 | 1920 | 52.81% |
+| showdown-native-expanded-v1 | DeepSeek Flash / 官方 SDK | 1920 | 76.77% |
+| showdown-sol-native-v1 | 原始启发式 | 1920 | 56.56% |
+| showdown-sol-native-v1 | GPT-6.1 Sol / Codex | 1920 | 89.58% |
+| showdown-sol-native-v1 | DeepSeek Flash / 官方 SDK | 1920 | 74.84% |
+| showdown-qwen-native-v1 | 原始启发式 | 1920 | 53.33% |
+| showdown-qwen-native-v1 | DeepSeek Flash / 官方 SDK | 1920 | 75.99% |
+| showdown-qwen-native-v1 | GPT-6.1 Sol / Codex | 1920 | 90.42% |
+| showdown-qwen-native-v1 | Qwen3.8-Max / Qwen Code | 1920 | 53.33% |
+| showdown-qwen-claude-v1 | 原始启发式 | 1920 | 53.91% |
+| showdown-qwen-claude-v1 | DeepSeek Flash / 官方 SDK | 1920 | 77.14% |
+| showdown-qwen-claude-v1 | GPT-6.1 Sol / Codex | 1920 | 89.27% |
+| showdown-qwen-claude-v1 | Qwen3.8-Max / Qwen Code | 1920 | 53.91% |
+| showdown-qwen-claude-v1 | Qwen3.8-Max / Claude Code | 1920 | 65.89% |
+
+原汇总：`experiments/showdown-native-expanded-v1/summary.json`、`experiments/showdown-sol-native-v1/summary.json`、`experiments/showdown-qwen-native-v1/summary.json`、`experiments/showdown-qwen-claude-v1/summary.json`。
+
+## Showdown · 简单策略对照
+
+旧对手池和队伍配置的校准数据。
+
+| 批次 | 策略 | 场数 | 得分率 |
+| --- | --- | --- | --- |
+| showdown-baselines-v1 | random | 96 | 27.08% |
+| showdown-baselines-v1 | maxpower | 96 | 18.75% |
+| showdown-baselines-v1 | damage | 96 | 47.92% |
+| showdown-baselines-v1 | heuristic | 96 | 60.42% |
+| showdown-baselines-v2 | random | 192 | 24.48% |
+| showdown-baselines-v2 | maxpower | 192 | 29.17% |
+| showdown-baselines-v2 | damage | 192 | 44.79% |
+| showdown-baselines-v2 | heuristic | 192 | 66.67% |
+
+原汇总：`runs/showdown-baselines-v1/summary.json`、`runs/showdown-baselines-v2/summary.json`。
+
 ## Celeste Classic · 固定入口
 
 帧数越低越好。100m 宿主删除搜索用了 120 次试跑。其余四关的起点取自上游输入记录，最优性未知。
@@ -89,6 +129,18 @@
 
 原汇总：`experiments/2048-neutral-v1/private/final/comparison.json`。
 
+## 2048 · 简单策略对照
+
+同一次基线校准的随机、固定优先级和贪心策略。
+
+| 策略 | 局数 | 平均得分 | 失败局数 |
+| --- | --- | --- | --- |
+| random | 128 | 1,135.94 | 0 |
+| priority | 128 | 2,405.03 | 0 |
+| greedy | 128 | 3,114.53 | 0 |
+
+原汇总：`runs/2048-baselines-v1/comparison.json`。
+
 ## 2048 · 同批预算复测
 
 人工参考使用 C++ 封装；原 Agent 接口只公开支持 JavaScript。超限局记零。阈值参考 126/128 局触及步数上限。
@@ -118,6 +170,19 @@
 
 原汇总：`experiments/shapez-neutral-v1/private/summary.json`、`experiments/shapez-neutral-v2/private/summary.json`、`experiments/shapez-extended-v1/private/summary.json`、`experiments/shapez-native-v1/private/summary.json`。
 
+## shapez · 未提交方案与人工对照
+
+这些复评说明已发现的可行解；正式提交仍按上表计分。
+
+| 产物 | 任务 | 复评交付数 |
+| --- | --- | --- |
+| 早期未提交切割 | cut_rotate | 70 |
+| 宿主缩短切割路径 | cut_rotate | 73 |
+| 后续未提交切割 | cut_rotate | 84 |
+| 未提交堆叠布局 | stack | 12 |
+
+原汇总：`research/shapez-unsubmitted-v1/result.json`、`research/shapez-optimality-check-v1/evaluation/result.json`、`research/shapez-unsubmitted-v2/result.json`、`research/shapez-stack-audit-v1/counterfactual/result.json`。
+
 ## Mindustry · 基础生产 v2
 
 回放修复后用原提交重评，每种蓝图每图独立重评五次，按四图平均。
@@ -127,6 +192,27 @@
 | copper | 4 | 40 | 342 |
 | graphite | 4 | 18.25 | 153.75 |
 | silicon | 4 | 21.25 | 96 |
+
+原汇总：`research/mindustry-replay-fix-v2/reevaluation/summary.json`。
+
+## Mindustry · 基础生产逐图复评
+
+对应上一表的 12 张地图。
+
+| 地图 | 产品 | 原始 baseline | DeepSeek 冻结蓝图 |
+| --- | --- | --- | --- |
+| copper-choke | copper | 40 | 386 |
+| copper-long | copper | 39 | 376 |
+| copper-near | copper | 41 | 436 |
+| copper-sparse | copper | 40 | 170 |
+| graphite-choke | graphite | 18 | 180 |
+| graphite-long | graphite | 18 | 175 |
+| graphite-near | graphite | 19 | 184 |
+| graphite-sparse | graphite | 18 | 76 |
+| silicon-choke | silicon | 21 | 96 |
+| silicon-long | silicon | 21 | 93 |
+| silicon-near | silicon | 22 | 99 |
+| silicon-sparse | silicon | 21 | 96 |
 
 原汇总：`research/mindustry-replay-fix-v2/reevaluation/summary.json`。
 

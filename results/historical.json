@@ -7,17 +7,28 @@
     "experiments/showdown-generalization-v2/private/final/comparison.json": "c7a50457c2042186c3baadad137a5a3d0352e94a0b54123979073f151638140d",
     "experiments/showdown-neutral-v3/private/final/comparison.json": "77c9be7aa7b331cd443c7aa234bc782055af553ded7034529909ffcfbfac29b7",
     "research/showdown-effect-v1/comparison.json": "791081f691f32e89bdbedfc759e5d63d041399e1341473c84a52e8eb742764e9",
+    "experiments/showdown-native-expanded-v1/summary.json": "f0d702c10623a05fe3bd664e51f7ef7dc54e41d9203a72b1421a7f776cafb74d",
+    "experiments/showdown-sol-native-v1/summary.json": "410cec5cfea0751709e3564e58d775d7d6fece17939a3ded1454757ee53985a2",
+    "experiments/showdown-qwen-native-v1/summary.json": "c516416e811ac553d0503d31a3b25d569437e68d4dcac4278721d33119785e34",
+    "experiments/showdown-qwen-claude-v1/summary.json": "308781b0f5f9791bebf918a4cbc0d9332111894460f36114db513cfed73195d5",
+    "runs/showdown-baselines-v1/summary.json": "554cc829dd5011a99c675fb1c35ff4c69398322e295083e50c1f293f2e2d0869",
+    "runs/showdown-baselines-v2/summary.json": "138c59f7cd709cd75e86ed22c31cc43d026a54504521a268d4aa499fdfb1cfd9",
     "runs/celeste-100m-demo/trial-0001/result.json": "593e1c745b5a7b7f7226e82282a9caa7989a5505c6e88947fb94b56ffbebfcef",
     "runs/celeste-100m-demo/summary.json": "3d45119af1685660c90ee4b8b8e550e24b996adc350d4e5805e7d52e609b029b",
     "experiments/celeste-100m/deepseek-research-008/private/summary.json": "fb6f2b5509280b5e858cea388692c1465198d59665d710fdb6d0e068e0abc062",
     "experiments/celeste-suite-v2/results.json": "46628fba93bec89931bb9d0c32bc40c6c67fd85e007478515f071342f15afe9e",
     "experiments/celeste-suite-dev-v3/results.json": "6880c14f13a8abe349733969a5900e2d691d59a759e06811e7f374dfcd2f0fed",
     "experiments/2048-neutral-v1/private/final/comparison.json": "0f00808b78826769ed4549724efb7dba9479ba6d4db7e37ecb7d9636810776d0",
+    "runs/2048-baselines-v1/comparison.json": "7d1222ac09182ad1edcab6cfca0a89f9d277628aa8883f6f21a231942b244919",
     "research/2048-upstream-comparison/stable-rerun/comparison.json": "f475a0ca70ceeca74a1cb948aa4b1bd7d27486df68e54bd66a7de32762290d6f",
     "experiments/shapez-neutral-v1/private/summary.json": "bfd0dfd0df2b8f6bcb12e6ddd16b55c9a6edba8011d366c96a2fcfe4197df3c0",
     "experiments/shapez-neutral-v2/private/summary.json": "6b71a30dedf371f12b0a57efb07803061c33dd8dee24ebc3c4c5fe10fb76d96b",
     "experiments/shapez-extended-v1/private/summary.json": "697beea99915cb63d808c806d16d67b3a78fee7102c6f5596b00fd068194a47c",
     "experiments/shapez-native-v1/private/summary.json": "a381f3ba627f298248617da26af5bfebbb2fe089fa91b7f02284b75eea41e754",
+    "research/shapez-unsubmitted-v1/result.json": "66583ff60bd9b291fb74cce816edbce19fedc1eeb5995c7b1b9ec9fbe96b0507",
+    "research/shapez-optimality-check-v1/evaluation/result.json": "6091b475c023da532d19e5654824661ac2b2c04cd776f87fabcdc69c24b33e85",
+    "research/shapez-unsubmitted-v2/result.json": "51e626f1ac3538372dd64e7fbc10e3a4541200da554e8832e7dd076302518bae",
+    "research/shapez-stack-audit-v1/counterfactual/result.json": "007e220c44b83c8e720a2a60001ce480c44712362bd94052018e4e484d90c553",
     "research/mindustry-replay-fix-v2/reevaluation/summary.json": "32e2599a1bbd774225d6248bb8a9c9d299bad34d74a2b16a3c45c20ad247c817",
     "runs/mindustry-qwen-claude-v2/execution-audit.json": "352aa5ea938aebacd25cb5f65a2b72048b1cb859a97c13a4f171f6a78fc36ba7",
     "research/mindustry-complex-production-v3/acceptance/acceptance.json": "e884ee1e584a505bac5420bf141aeaa55314449945f26071abfaeaabbf86139c"
@@ -253,6 +264,172 @@
       "note": "每行是自己的配对测试。首轮开发集的 91.67% 与该行独立测试使用不同队伍和种子。"
     },
     {
+      "title": "Showdown · 扩充分布的历次抽样",
+      "columns": [
+        "实验批次",
+        "程序",
+        "场数",
+        "得分率"
+      ],
+      "rows": [
+        [
+          "showdown-native-expanded-v1",
+          "原始启发式",
+          1920,
+          0.528125
+        ],
+        [
+          "showdown-native-expanded-v1",
+          "DeepSeek Flash / 官方 SDK",
+          1920,
+          0.7677083333333333
+        ],
+        [
+          "showdown-sol-native-v1",
+          "原始启发式",
+          1920,
+          0.565625
+        ],
+        [
+          "showdown-sol-native-v1",
+          "GPT-6.1 Sol / Codex",
+          1920,
+          0.8958333333333334
+        ],
+        [
+          "showdown-sol-native-v1",
+          "DeepSeek Flash / 官方 SDK",
+          1920,
+          0.7484375
+        ],
+        [
+          "showdown-qwen-native-v1",
+          "原始启发式",
+          1920,
+          0.5333333333333333
+        ],
+        [
+          "showdown-qwen-native-v1",
+          "DeepSeek Flash / 官方 SDK",
+          1920,
+          0.7598958333333333
+        ],
+        [
+          "showdown-qwen-native-v1",
+          "GPT-6.1 Sol / Codex",
+          1920,
+          0.9041666666666667
+        ],
+        [
+          "showdown-qwen-native-v1",
+          "Qwen3.8-Max / Qwen Code",
+          1920,
+          0.5333333333333333
+        ],
+        [
+          "showdown-qwen-claude-v1",
+          "原始启发式",
+          1920,
+          0.5390625
+        ],
+        [
+          "showdown-qwen-claude-v1",
+          "DeepSeek Flash / 官方 SDK",
+          1920,
+          0.7713541666666667
+        ],
+        [
+          "showdown-qwen-claude-v1",
+          "GPT-6.1 Sol / Codex",
+          1920,
+          0.8927083333333333
+        ],
+        [
+          "showdown-qwen-claude-v1",
+          "Qwen3.8-Max / Qwen Code",
+          1920,
+          0.5390625
+        ],
+        [
+          "showdown-qwen-claude-v1",
+          "Qwen3.8-Max / Claude Code",
+          1920,
+          0.6588541666666666
+        ]
+      ],
+      "sources": [
+        "experiments/showdown-native-expanded-v1/summary.json",
+        "experiments/showdown-sol-native-v1/summary.json",
+        "experiments/showdown-qwen-native-v1/summary.json",
+        "experiments/showdown-qwen-claude-v1/summary.json"
+      ],
+      "note": "各批次使用当时的独立抽样或已冻结对照。相同程序可出现多次，这些行不计为新的 Agent 研究重复。"
+    },
+    {
+      "title": "Showdown · 简单策略对照",
+      "columns": [
+        "批次",
+        "策略",
+        "场数",
+        "得分率"
+      ],
+      "rows": [
+        [
+          "showdown-baselines-v1",
+          "random",
+          96,
+          0.2708333333333333
+        ],
+        [
+          "showdown-baselines-v1",
+          "maxpower",
+          96,
+          0.1875
+        ],
+        [
+          "showdown-baselines-v1",
+          "damage",
+          96,
+          0.4791666666666667
+        ],
+        [
+          "showdown-baselines-v1",
+          "heuristic",
+          96,
+          0.6041666666666666
+        ],
+        [
+          "showdown-baselines-v2",
+          "random",
+          192,
+          0.24479166666666666
+        ],
+        [
+          "showdown-baselines-v2",
+          "maxpower",
+          192,
+          0.2916666666666667
+        ],
+        [
+          "showdown-baselines-v2",
+          "damage",
+          192,
+          0.4479166666666667
+        ],
+        [
+          "showdown-baselines-v2",
+          "heuristic",
+          192,
+          0.6666666666666666
+        ]
+      ],
+      "sources": [
+        "runs/showdown-baselines-v1/summary.json",
+        "runs/showdown-baselines-v2/summary.json"
+      ],
+      "note": "旧对手池和队伍配置的校准数据。"
+    },
+    {
       "title": "Celeste Classic · 固定入口",
       "columns": [
         "关卡",
@@ -359,6 +536,39 @@
       "note": "每局最多 2,000 步，相同随机流。"
     },
     {
+      "title": "2048 · 简单策略对照",
+      "columns": [
+        "策略",
+        "局数",
+        "平均得分",
+        "失败局数"
+      ],
+      "rows": [
+        [
+          "random",
+          128,
+          1135.9375,
+          0
+        ],
+        [
+          "priority",
+          128,
+          2405.03125,
+          0
+        ],
+        [
+          "greedy",
+          128,
+          3114.53125,
+          0
+        ]
+      ],
+      "sources": [
+        "runs/2048-baselines-v1/comparison.json"
+      ],
+      "note": "同一次基线校准的随机、固定优先级和贪心策略。"
+    },
+    {
       "title": "2048 · 同批预算复测",
       "columns": [
         "策略",
@@ -458,6 +668,43 @@
       "note": "每格为 60 秒正确交付数。延长预算沿用前轮工作；官方 Harness 轮从原 baseline 重启。未提交方案不计分。"
     },
     {
+      "title": "shapez · 未提交方案与人工对照",
+      "columns": [
+        "产物",
+        "任务",
+        "复评交付数"
+      ],
+      "rows": [
+        [
+          "早期未提交切割",
+          "cut_rotate",
+          70
+        ],
+        [
+          "宿主缩短切割路径",
+          "cut_rotate",
+          73
+        ],
+        [
+          "后续未提交切割",
+          "cut_rotate",
+          84
+        ],
+        [
+          "未提交堆叠布局",
+          "stack",
+          12
+        ]
+      ],
+      "sources": [
+        "research/shapez-unsubmitted-v1/result.json",
+        "research/shapez-optimality-check-v1/evaluation/result.json",
+        "research/shapez-unsubmitted-v2/result.json",
+        "research/shapez-stack-audit-v1/counterfactual/result.json"
+      ],
+      "note": "这些复评说明已发现的可行解；正式提交仍按上表计分。"
+    },
+    {
       "title": "Mindustry · 基础生产 v2",
       "columns": [
         "产品",
@@ -489,6 +736,93 @@
         "research/mindustry-replay-fix-v2/reevaluation/summary.json"
       ],
       "note": "回放修复后用原提交重评，每种蓝图每图独立重评五次，按四图平均。"
+    },
+    {
+      "title": "Mindustry · 基础生产逐图复评",
+      "columns": [
+        "地图",
+        "产品",
+        "原始 baseline",
+        "DeepSeek 冻结蓝图"
+      ],
+      "rows": [
+        [
+          "copper-choke",
+          "copper",
+          40,
+          386
+        ],
+        [
+          "copper-long",
+          "copper",
+          39,
+          376
+        ],
+        [
+          "copper-near",
+          "copper",
+          41,
+          436
+        ],
+        [
+          "copper-sparse",
+          "copper",
+          40,
+          170
+        ],
+        [
+          "graphite-choke",
+          "graphite",
+          18,
+          180
+        ],
+        [
+          "graphite-long",
+          "graphite",
+          18,
+          175
+        ],
+        [
+          "graphite-near",
+          "graphite",
+          19,
+          184
+        ],
+        [
+          "graphite-sparse",
+          "graphite",
+          18,
+          76
+        ],
+        [
+          "silicon-choke",
+          "silicon",
+          21,
+          96
+        ],
+        [
+          "silicon-long",
+          "silicon",
+          21,
+          93
+        ],
+        [
+          "silicon-near",
+          "silicon",
+          22,
+          99
+        ],
+        [
+          "silicon-sparse",
+          "silicon",
+          21,
+          96
+        ]
+      ],
+      "sources": [
+        "research/mindustry-replay-fix-v2/reevaluation/summary.json"
+      ],
+      "note": "对应上一表的 12 张地图。"
     },
     {
       "title": "Mindustry · 中断运行",

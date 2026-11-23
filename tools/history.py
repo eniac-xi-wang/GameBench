@@ -59,7 +59,7 @@ def extract(archive):
                     'deepseek':v['deepseek_vs_baseline']['optimized']}
             games=v['sol_vs_baseline']['games_per_program']
         else:
-            scores={k:x['score'] for k,x in v['overall'].items()}
+            scores={('qwen_code' if k=='qwen' else k):x['score'] for k,x in v['overall'].items()}
             games=v['overall']['baseline']['games']
         for k,score in scores.items():rows.append([f.split('/')[1],SYSTEMS[k],games,score])
     files=['runs/showdown-baselines-v1/summary.json','runs/showdown-baselines-v2/summary.json']
