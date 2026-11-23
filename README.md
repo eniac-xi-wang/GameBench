@@ -23,6 +23,8 @@ Use a new output directory for each run. Omit `--out` for a fresh timestamped di
 
 **Supported host.** The full suite is tested on Apple Silicon macOS with Command Line Tools. The two policy games (2048 and Showdown) use macOS Seatbelt for policy isolation. Celeste, shapez and Mindustry use data submissions. Mindustry automatically installs a pinned JDK on macOS arm64. On other Unix hosts it accepts `MINDBENCH_JAVA_HOME` pointing at a JDK 17+ with `java` and `javac`; these hosts have not undergone the full acceptance run. Games, Node, Java and npm dependencies are installed under the checkout when selected. First use needs internet access or the offline caches described below. Allow several GB for all game trees and workspaces.
 
+For original game visuals, export a standalone 2048 or shapez web replay, import a factory into Mindustry, or open the official Showdown animation. [Game playback and local asset setup](docs/game-playback.md)
+
 ## Tasks and scores
 
 | Game | Task IDs | Submission and primary score |

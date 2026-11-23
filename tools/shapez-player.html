@@ -1,0 +1,83 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shapez · 工厂回放</title>
+<style>
+*{box-sizing:border-box}body{background:#edf0f4;color:#263646;font:16px system-ui;margin:0}main{max-width:850px;margin:20px auto;padding:0 16px}h1{font-size:24px;margin:0}header,nav{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:12px 0}output{font-variant-numeric:tabular-nums}canvas{display:block;width:100%;max-height:70vh;object-fit:contain;object-position:left center}button,select{font:inherit}input{flex:1;min-width:120px}small{color:#546270}
+</style><main><header><h1 id="name">shapez</h1><output id="status">加载游戏素材…</output></header>
+<canvas id="map"></canvas><nav><button id="play" disabled>播放</button><input id="seek" type="range" value="0" min="0" disabled aria-label="模拟进度">
+<select id="speed" aria-label="播放速度"><option>1</option><option>2</option><option>4</option></select> ×</nav>
+<small>shapez.io · tobspr Games</small></main>
+<script type="application/json" id="payload">__PAYLOAD__</script>
+<script>
+// The upstream shape painter uses this helper from core/polyfills.js.
+Math.radians = degrees => degrees * Math.PI / 180;
+const upstream = (() => { const module={exports:{}}; __VENDOR__
+return module.exports; })();
+const engine = (() => { const module={exports:{}}; const require=() => upstream; __ENGINE__
+return module.exports; })();
+const {task, blueprint, expected, textures} = JSON.parse(document.querySelector("#payload").textContent);
+const canvas=document.querySelector("#map"), ctx=canvas.getContext("2d");
+const seek=document.querySelector("#seek"), play=document.querySelector("#play"), statusText=document.querySelector("#status");
+const cell=42, end=task.duration_seconds*task.tick_rate, images=new Map(), items=new Map();
+canvas.width=cell*task.width; canvas.height=cell*task.height; seek.max=end;
+document.querySelector("#name").textContent="shapez · "+task.name;
+let sim, playing=false, previous=0, remainder=0, animation=0;
+function texture(b){
+  const rv=b.rotationVariant||0, variant=b.variant&&b.variant!=="default" ? "-"+b.variant : "";
+  if(b.type==="belt")return "belt/built/"+["forward","left","right"][rv]+"_"+(Math.floor(sim.tick/2)%14);
+  if(b.type==="underground_belt")return "buildings/underground_belt_"+["entry","exit"][rv]+variant;
+  return "buildings/"+b.type+variant;
+}
+function item(key){
+  if(images.has("colors/"+key))return images.get("colors/"+key);
+  if(!items.has(key)){
+    const surface=document.createElement("canvas");surface.width=surface.height=64;
+    const paint=surface.getContext("2d");
+    paint.beginCircle=(x,y,r)=>{paint.beginPath();paint.arc(x,y,r,0,2*Math.PI);};
+    sim.root.shapeDefinitionMgr.getShapeFromShortKey(key).drawFullSizeOnCanvas(paint,64);
+    items.set(key,surface);
+  }
+  return items.get(key);
+}
+function draw(tick){
+  if(!sim || tick<sim.tick)sim=engine.create(task,blueprint);
+  while(sim.tick<tick)sim.step();
+  const f=sim.snapshot();
+  ctx.fillStyle="#e8ebef";ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.beginPath();ctx.strokeStyle="#d9dce2";
+  for(let x=0;x<=canvas.width;x+=cell){ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);}
+  for(let y=0;y<=canvas.height;y+=cell){ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);}
+  ctx.stroke();ctx.fillStyle="#626973";
+  for(const [x,y] of task.blocked)ctx.fillRect(x*cell,y*cell,cell,cell);
+  for(const b of sim.layout){
+    ctx.save();ctx.translate((b.x+.5)*cell,(b.y+.5)*cell);ctx.rotate((b.rotation||0)*Math.PI/180);
+    const sideways=b.rotation===90||b.rotation===270;
+    ctx.drawImage(images.get(texture(b)),-cell/2,-cell/2,(sideways?b.bounds.h:b.bounds.w)*cell,(sideways?b.bounds.w:b.bounds.h)*cell);
+    ctx.restore();
+    if(b.fixed){const d=cell*.55;ctx.drawImage(item(b.shape||b.color),(b.x+.5)*cell-d/2,(b.y+.5)*cell-d/2,d,d);}
+  }
+  for(const v of f.items){const d=cell*.55;ctx.drawImage(item(v.item),v.x*cell-d/2,v.y*cell-d/2,d,d);}
+  const expectedCount=expected.filter(e=>e.correct && e.tick<=tick).length;
+  if(f.delivered!==expectedCount)throw Error("出货数与冻结记录不一致，tick "+tick);
+  seek.value=tick;statusText.textContent=(tick/task.tick_rate).toFixed(1)+" 秒 · 已交付 "+f.delivered+" 件";
+}
+function stop(){playing=false;cancelAnimationFrame(animation);play.textContent="播放";}
+function show(tick){
+  try{draw(tick);return true;}
+  catch(e){stop();play.disabled=seek.disabled=true;statusText.textContent=e.message;return false;}
+}
+function frame(now){
+  remainder+=(now-previous)*task.tick_rate*Number(document.querySelector("#speed").value)/1000;previous=now;
+  const n=Math.floor(remainder);remainder-=n;
+  if(n&&!show(Math.min(end,sim.tick+n)))return;
+  if(sim.tick>=end)stop();else animation=requestAnimationFrame(frame);
+}
+play.onclick=()=>{
+  if(playing){stop();return;}
+  if(sim.tick===end&&!show(0))return;
+  playing=true;play.textContent="暂停";previous=performance.now();remainder=0;animation=requestAnimationFrame(frame);
+};
+seek.oninput=()=>{stop();show(Number(seek.value));};
+Promise.all(Object.entries(textures).map(async ([key,uri])=>{
+  const image=new Image();image.src=uri;await image.decode();images.set(key,image);
+})).then(()=>{if(show(0))play.disabled=seek.disabled=false;}).catch(e=>{statusText.textContent="素材加载失败 · "+e.message;});
+</script></html>
