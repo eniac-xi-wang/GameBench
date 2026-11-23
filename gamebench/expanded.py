@@ -61,3 +61,21 @@ def final(smoke):
         subprocess.run([core.NODE, ROOT/'tasklab/showdown_pool/generate.cjs', 'sample', result, request], check=True)
         teams = read(result)['splits']['final']
     return {'teams':teams, 'cases':cases(teams, salt+'/battles', pairs)}
+
+
+def paired(left, right):
+    from collections import defaultdict
+    blocks = defaultdict(list)
+    for a,b in zip(sorted(left,key=lambda r:r['id']), sorted(right,key=lambda r:r['id']), strict=True):
+        if any(a[k]!=b[k] for k in ('id','opponent','block','config','candidate_side','team_ids')):
+            raise ValueError('Programs faced different scenarios')
+        blocks[a['block']].append(b['score']-a['score'])
+    strata = defaultdict(list)
+    for block, values in blocks.items():
+        strata[block.split('/')[0]].append(sum(values)/len(values))
+    rng = random.Random(1729)
+    samples = sorted(sum(sum(rng.choices(v,k=len(v)))/len(v) for v in strata.values())/len(strata)
+                     for _ in range(5000))
+    return {'score_delta':sum(sum(v)/len(v) for v in strata.values())/len(strata),
+            'paired_team_pair_ci95':[samples[124],samples[4874]], 'team_pairs':len(blocks),
+            'strata':len(strata),'method':'conditional stratified team-pair bootstrap'}

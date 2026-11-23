@@ -11,9 +11,7 @@ def credential_environment(names):
         for line in path.read_text().splitlines():
             if line.strip() and not line.lstrip().startswith('#') and '=' in line:
                 key,value=line.split('=',1);key=key.strip().removeprefix('export ').strip()
-                if key in names or (key=='API_KEY' and 'DEEPSEEK_API_KEY' in names):values[key]=value.strip().strip('\"\'')
-    if 'DEEPSEEK_API_KEY' in names and not values.get('DEEPSEEK_API_KEY') and values.get('API_KEY'):
-        values['DEEPSEEK_API_KEY']=values['API_KEY']
+                if key in names:values[key]=value.strip().strip('\"\'')
     values.update({k:os.environ[k] for k in names if os.environ.get(k)})
     return {k:values[k] for k in names if values.get(k)}
 

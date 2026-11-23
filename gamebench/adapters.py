@@ -121,7 +121,10 @@ def paired(task_id,baseline_out,agent_out):
         return core.paired(core.records(Path(baseline_out)/'engine'),core.records(Path(agent_out)/'engine'))
     if t['game']=='showdown':
         from showdownbench_v3 import suite
-        return suite.paired_difference(suite.records(Path(baseline_out)/'engine'),suite.records(Path(agent_out)/'engine'))
+        difference = suite.paired_difference
+        if task_id=='showdown-expanded':
+            from .expanded import paired as difference
+        return difference(suite.records(Path(baseline_out)/'engine'),suite.records(Path(agent_out)/'engine'))
     b=read(Path(baseline_out)/'result.json');r=read(Path(agent_out)/'result.json')
     gain=(b['primary']-r['primary']) if t['direction']=='min' else (r['primary']-b['primary'])
     return {'improvement':gain,'unit':t['metric'],'baseline':b['primary'],'candidate':r['primary']}

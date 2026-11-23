@@ -1,0 +1,544 @@
+{
+  "schema": 1,
+  "scope": "historical experiments and controls",
+  "sources_sha256": {
+    "experiments/showdown-deepseek-claude-v1/summary.json": "c1d655e45851bc6717d806e3fc297909ac3b430d71368bccc7b0ba31180776a2",
+    "experiments/showdown-pilot-v1/private/summary.json": "5a95f78665a471dc981a85c8d14467c2d6e8cceb10bf29d0b9cdd059b884aea5",
+    "experiments/showdown-generalization-v2/private/final/comparison.json": "c7a50457c2042186c3baadad137a5a3d0352e94a0b54123979073f151638140d",
+    "experiments/showdown-neutral-v3/private/final/comparison.json": "77c9be7aa7b331cd443c7aa234bc782055af553ded7034529909ffcfbfac29b7",
+    "research/showdown-effect-v1/comparison.json": "791081f691f32e89bdbedfc759e5d63d041399e1341473c84a52e8eb742764e9",
+    "runs/celeste-100m-demo/trial-0001/result.json": "593e1c745b5a7b7f7226e82282a9caa7989a5505c6e88947fb94b56ffbebfcef",
+    "runs/celeste-100m-demo/summary.json": "3d45119af1685660c90ee4b8b8e550e24b996adc350d4e5805e7d52e609b029b",
+    "experiments/celeste-100m/deepseek-research-008/private/summary.json": "fb6f2b5509280b5e858cea388692c1465198d59665d710fdb6d0e068e0abc062",
+    "experiments/celeste-suite-v2/results.json": "46628fba93bec89931bb9d0c32bc40c6c67fd85e007478515f071342f15afe9e",
+    "experiments/celeste-suite-dev-v3/results.json": "6880c14f13a8abe349733969a5900e2d691d59a759e06811e7f374dfcd2f0fed",
+    "experiments/2048-neutral-v1/private/final/comparison.json": "0f00808b78826769ed4549724efb7dba9479ba6d4db7e37ecb7d9636810776d0",
+    "research/2048-upstream-comparison/stable-rerun/comparison.json": "f475a0ca70ceeca74a1cb948aa4b1bd7d27486df68e54bd66a7de32762290d6f",
+    "experiments/shapez-neutral-v1/private/summary.json": "bfd0dfd0df2b8f6bcb12e6ddd16b55c9a6edba8011d366c96a2fcfe4197df3c0",
+    "experiments/shapez-neutral-v2/private/summary.json": "6b71a30dedf371f12b0a57efb07803061c33dd8dee24ebc3c4c5fe10fb76d96b",
+    "experiments/shapez-extended-v1/private/summary.json": "697beea99915cb63d808c806d16d67b3a78fee7102c6f5596b00fd068194a47c",
+    "experiments/shapez-native-v1/private/summary.json": "a381f3ba627f298248617da26af5bfebbb2fe089fa91b7f02284b75eea41e754",
+    "research/mindustry-replay-fix-v2/reevaluation/summary.json": "32e2599a1bbd774225d6248bb8a9c9d299bad34d74a2b16a3c45c20ad247c817",
+    "runs/mindustry-qwen-claude-v2/execution-audit.json": "352aa5ea938aebacd25cb5f65a2b72048b1cb859a97c13a4f171f6a78fc36ba7",
+    "research/mindustry-complex-production-v3/acceptance/acceptance.json": "e884ee1e584a505bac5420bf141aeaa55314449945f26071abfaeaabbf86139c"
+  },
+  "tables": [
+    {
+      "title": "Pokémon Showdown · 同批独立测试",
+      "columns": [
+        "系统",
+        "场数",
+        "得分率",
+        "相对 baseline（百分点）",
+        "策略失败",
+        "达回合上限"
+      ],
+      "rows": [
+        [
+          "原始启发式",
+          1920,
+          0.5390625,
+          0.0,
+          0,
+          0
+        ],
+        [
+          "GPT-6.1 Sol / Codex",
+          1920,
+          0.8927083333333333,
+          35.364583333333336,
+          0,
+          0
+        ],
+        [
+          "DeepSeek Flash / 官方 SDK",
+          1920,
+          0.7713541666666667,
+          23.229166666666668,
+          0,
+          0
+        ],
+        [
+          "DeepSeek Flash / Claude Code",
+          1920,
+          0.7135416666666666,
+          17.447916666666664,
+          0,
+          0
+        ],
+        [
+          "Qwen3.8-Max / Claude Code",
+          1920,
+          0.6588541666666666,
+          11.979166666666663,
+          0,
+          2
+        ],
+        [
+          "Qwen3.8-Max / Qwen Code",
+          1920,
+          0.5390625,
+          0.0,
+          0,
+          0
+        ]
+      ],
+      "sources": [
+        "experiments/showdown-deepseek-claude-v1/summary.json"
+      ],
+      "note": "6 个分层、5 个公开对手、96 对队伍。每个程序 1,920 场，每个 Agent 系统一次研究。胜 1，平 0.5，负 0。"
+    },
+    {
+      "title": "Showdown · 同一提交按分层拆分",
+      "columns": [
+        "分层",
+        "原始启发式",
+        "GPT-6.1 Sol / Codex",
+        "DeepSeek Flash / 官方 SDK",
+        "DeepSeek Flash / Claude Code",
+        "Qwen3.8-Max / Claude Code",
+        "Qwen3.8-Max / Qwen Code"
+      ],
+      "rows": [
+        [
+          "ou-hidden-loadouts",
+          0.5875,
+          0.9375,
+          0.771875,
+          0.675,
+          0.721875,
+          0.5875
+        ],
+        [
+          "ou-weather-cores",
+          0.5875,
+          0.95,
+          0.74375,
+          0.7375,
+          0.634375,
+          0.5875
+        ],
+        [
+          "ou-hazards-pivot",
+          0.56875,
+          0.925,
+          0.825,
+          0.746875,
+          0.7125,
+          0.56875
+        ],
+        [
+          "ou-setup-denial",
+          0.58125,
+          0.896875,
+          0.784375,
+          0.78125,
+          0.715625,
+          0.58125
+        ],
+        [
+          "gen9-monotype",
+          0.425,
+          0.771875,
+          0.753125,
+          0.628125,
+          0.546875,
+          0.425
+        ],
+        [
+          "gen9-ubers",
+          0.484375,
+          0.875,
+          0.75,
+          0.7125,
+          0.621875,
+          0.484375
+        ]
+      ],
+      "sources": [
+        "experiments/showdown-deepseek-claude-v1/summary.json"
+      ],
+      "note": "每个分层 320 场，同一系统的六行来自同一个程序。"
+    },
+    {
+      "title": "Showdown · 配对差值",
+      "columns": [
+        "对照",
+        "差值（百分点）",
+        "95% 下界",
+        "95% 上界"
+      ],
+      "rows": [
+        [
+          "DeepSeek / Claude Code 相对 原始启发式",
+          17.447916666666664,
+          13.697916666666668,
+          21.25
+        ],
+        [
+          "DeepSeek / Claude Code 相对 DeepSeek Flash / 官方 SDK",
+          -5.78125,
+          -9.583333333333332,
+          -2.03125
+        ],
+        [
+          "DeepSeek / Claude Code 相对 GPT-6.1 Sol / Codex",
+          -17.916666666666668,
+          -21.09375,
+          -14.739583333333334
+        ],
+        [
+          "DeepSeek / Claude Code 相对 Qwen3.8-Max / Qwen Code",
+          17.447916666666664,
+          13.697916666666668,
+          21.25
+        ],
+        [
+          "DeepSeek / Claude Code 相对 Qwen3.8-Max / Claude Code",
+          5.46875,
+          1.7708333333333333,
+          9.0625
+        ]
+      ],
+      "sources": [
+        "experiments/showdown-deepseek-claude-v1/summary.json"
+      ],
+      "note": "同队伍对在各分层内重采样。区间描述这批对战带来的不确定性；系统间重复研究的方差未知。"
+    },
+    {
+      "title": "Showdown · 早期协议与迁移",
+      "columns": [
+        "协议",
+        "场数",
+        "起点得分率",
+        "冻结程序得分率",
+        "启发式得分率"
+      ],
+      "rows": [
+        [
+          "固定开发集",
+          768,
+          0.2565104166666667,
+          0.6666666666666666,
+          0.6940104166666666
+        ],
+        [
+          "轮换训练阵容",
+          1152,
+          0.7413194444444444,
+          0.7986111111111112,
+          0.6901041666666666
+        ],
+        [
+          "中性提示",
+          1152,
+          0.6875,
+          0.8767361111111112,
+          0.6875
+        ],
+        [
+          "旧提交迁移到扩充分布",
+          360,
+          0.5333333333333333,
+          0.43333333333333335,
+          0.5333333333333333
+        ]
+      ],
+      "sources": [
+        "experiments/showdown-pilot-v1/private/summary.json",
+        "experiments/showdown-generalization-v2/private/final/comparison.json",
+        "experiments/showdown-neutral-v3/private/final/comparison.json",
+        "research/showdown-effect-v1/comparison.json"
+      ],
+      "note": "每行是自己的配对测试。首轮开发集的 91.67% 与该行独立测试使用不同队伍和种子。"
+    },
+    {
+      "title": "Celeste Classic · 固定入口",
+      "columns": [
+        "关卡",
+        "系统或对照",
+        "起点（帧）",
+        "最终（帧）"
+      ],
+      "rows": [
+        [
+          "100m",
+          "宿主删除搜索",
+          94,
+          67
+        ],
+        [
+          "100m",
+          "DeepSeek / research-008",
+          67,
+          67
+        ],
+        [
+          "300m",
+          "DeepSeek / 受限环境 v2",
+          70,
+          70
+        ],
+        [
+          "400m",
+          "DeepSeek / 受限环境 v2",
+          64,
+          64
+        ],
+        [
+          "600m",
+          "DeepSeek / 受限环境 v2",
+          48,
+          48
+        ],
+        [
+          "700m",
+          "DeepSeek / 受限环境 v2",
+          46,
+          46
+        ],
+        [
+          "300m",
+          "DeepSeek / 开发环境 v3",
+          70,
+          70
+        ],
+        [
+          "400m",
+          "DeepSeek / 开发环境 v3",
+          64,
+          64
+        ],
+        [
+          "600m",
+          "DeepSeek / 开发环境 v3",
+          48,
+          48
+        ],
+        [
+          "700m",
+          "DeepSeek / 开发环境 v3",
+          46,
+          46
+        ]
+      ],
+      "sources": [
+        "runs/celeste-100m-demo/trial-0001/result.json",
+        "runs/celeste-100m-demo/summary.json",
+        "experiments/celeste-100m/deepseek-research-008/private/summary.json",
+        "experiments/celeste-suite-v2/results.json",
+        "experiments/celeste-suite-dev-v3/results.json"
+      ],
+      "note": "帧数越低越好。100m 宿主删除搜索用了 120 次试跑。其余四关的起点取自上游输入记录，最优性未知。"
+    },
+    {
+      "title": "2048 · 独立测试",
+      "columns": [
+        "策略",
+        "局数",
+        "平均得分",
+        "失败局数"
+      ],
+      "rows": [
+        [
+          "贪心 baseline",
+          128,
+          3088.59375,
+          0
+        ],
+        [
+          "DeepSeek 冻结程序",
+          128,
+          33666.21875,
+          0
+        ]
+      ],
+      "sources": [
+        "experiments/2048-neutral-v1/private/final/comparison.json"
+      ],
+      "note": "每局最多 2,000 步，相同随机流。"
+    },
+    {
+      "title": "2048 · 同批预算复测",
+      "columns": [
+        "策略",
+        "局数",
+        "平均得分",
+        "失败局数"
+      ],
+      "rows": [
+        [
+          "upstream_raw",
+          128,
+          0.0,
+          128
+        ],
+        [
+          "upstream_parallel",
+          128,
+          0.0,
+          128
+        ],
+        [
+          "upstream_guarded",
+          128,
+          8739.625,
+          0
+        ],
+        [
+          "upstream_guarded_threshold",
+          128,
+          45291.46875,
+          0
+        ],
+        [
+          "deepseek_frozen",
+          128,
+          33929.0625,
+          0
+        ],
+        [
+          "deepseek_no_guards",
+          128,
+          5319.125,
+          92
+        ]
+      ],
+      "sources": [
+        "research/2048-upstream-comparison/stable-rerun/comparison.json"
+      ],
+      "note": "人工参考使用 C++ 封装；原 Agent 接口只公开支持 JavaScript。超限局记零。阈值参考 126/128 局触及步数上限。"
+    },
+    {
+      "title": "shapez · 固定地图",
+      "columns": [
+        "运行",
+        "切割",
+        "染色",
+        "堆叠"
+      ],
+      "rows": [
+        [
+          "原始 baseline",
+          23,
+          14,
+          11
+        ],
+        [
+          "shapez-neutral-v1",
+          23,
+          14,
+          11
+        ],
+        [
+          "shapez-neutral-v2",
+          23,
+          14,
+          11
+        ],
+        [
+          "shapez-extended-v1",
+          84,
+          15,
+          11
+        ],
+        [
+          "shapez-native-v1",
+          85,
+          38,
+          11
+        ]
+      ],
+      "sources": [
+        "experiments/shapez-neutral-v1/private/summary.json",
+        "experiments/shapez-neutral-v2/private/summary.json",
+        "experiments/shapez-extended-v1/private/summary.json",
+        "experiments/shapez-native-v1/private/summary.json"
+      ],
+      "note": "每格为 60 秒正确交付数。延长预算沿用前轮工作；官方 Harness 轮从原 baseline 重启。未提交方案不计分。"
+    },
+    {
+      "title": "Mindustry · 基础生产 v2",
+      "columns": [
+        "产品",
+        "地图数",
+        "原始 baseline",
+        "DeepSeek 冻结蓝图"
+      ],
+      "rows": [
+        [
+          "copper",
+          4,
+          40,
+          342
+        ],
+        [
+          "graphite",
+          4,
+          18.25,
+          153.75
+        ],
+        [
+          "silicon",
+          4,
+          21.25,
+          96
+        ]
+      ],
+      "sources": [
+        "research/mindustry-replay-fix-v2/reevaluation/summary.json"
+      ],
+      "note": "回放修复后用原提交重评，每种蓝图每图独立重评五次，按四图平均。"
+    },
+    {
+      "title": "Mindustry · 中断运行",
+      "columns": [
+        "系统",
+        "地图数",
+        "提交与起点逐字节相同",
+        "独立最终评测数"
+      ],
+      "rows": [
+        [
+          "Qwen3.8-Max / Claude Code",
+          12,
+          true,
+          12
+        ]
+      ],
+      "sources": [
+        "runs/mindustry-qwen-claude-v2/execution-audit.json"
+      ],
+      "note": "用户报告额度用尽，日志没有记录明确的额度错误。这一轮单列。"
+    },
+    {
+      "title": "Mindustry · 复杂生产 v3",
+      "columns": [
+        "任务",
+        "原始 baseline",
+        "人工双线布局"
+      ],
+      "rows": [
+        [
+          "plastanium-bio-oil",
+          61,
+          122
+        ],
+        [
+          "blast-compound",
+          51,
+          102
+        ],
+        [
+          "surge-alloy",
+          18,
+          36
+        ]
+      ],
+      "sources": [
+        "research/mindustry-complex-production-v3/acceptance/acceptance.json"
+      ],
+      "note": "复杂链只完成人工可行性验收。每个布局三次改变 JSON 排列顺序，并逐次核对回放，模型调用为零。"
+    }
+  ]
+}

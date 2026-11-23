@@ -1,0 +1,8 @@
+{
+  "id": "saved-submission",
+  "model": "none",
+  "harness": "offline artifact grading",
+  "harness_version": "1",
+  "credential_env": [],
+  "command": []
+}

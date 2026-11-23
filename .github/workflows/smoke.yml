@@ -1,0 +1,14 @@
+name: Baseline and historical results
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 tools/history.py --check
+      - run: ./bench --tasks celeste-100m --out runs/ci

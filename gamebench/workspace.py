@@ -37,6 +37,9 @@ def public_sources(game,project):
         from mindbench.core import JAR,JAVA_HOME
         copy_item(JAR,project/'.tools/mindustry/server-release.jar')
         copy_item(JAVA_HOME,project/'.tools/mindustry/jdk/Contents/Home')
+    if game=='shapez':
+        for n in ('package.json','package-lock.json','node_modules'):
+            copy_item(ROOT/'tools'/n,project/'tools'/n)
     if game=='showdown':
         for n in ('dist','node_modules'):copy_item(ROOT/'pokemon-showdown'/n,project/'pokemon-showdown'/n)
 
