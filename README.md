@@ -2,6 +2,14 @@
 
 <p align="center"><strong>How much can a coding agent improve a working game solution?</strong></p>
 
+<p align="center">
+  <a href="#how-a-run-works">Protocol</a> ·
+  <a href="#tasks">Tasks</a> ·
+  <a href="#experimental-results">Results</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#run-an-agent">Run an agent</a>
+</p>
+
 In Celeste Classic, the starting script clears the first room in 94 frames. A coding agent can read the movement code, write a search program, replay a candidate frame by frame, and revise its script. When the session ends, GameBench runs the final script through the engine and counts the frames to the exit. Across **14 tasks in five games**, the same loop measures what a **model and its native harness** can improve together.
 
 <p align="center">
